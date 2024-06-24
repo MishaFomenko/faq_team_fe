@@ -9,6 +9,7 @@ export const ColorList = styled.div`
   display: flex;
   gap: 10px;
   margin-left: 10px;
+  flex-wrap: wrap;
 `;
 
 export const ColorButton = styled.button<{ color: string; selected: boolean }>`

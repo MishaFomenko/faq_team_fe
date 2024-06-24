@@ -7,8 +7,7 @@ import { PublicProfileInfoType } from 'components/publicProfileInfo/types.ts';
 import ReviewsList from 'components/reviewsList';
 import { productCard } from 'const/constants.ts';
 
-import { useGetAllProductsQuery } from 'redux/productApiSlice.ts';
-
+import { useGetProductsQuery } from '../../redux/productsApiSlice.ts';
 
 const PublicVendorTab = ({
   fullName,
@@ -17,7 +16,7 @@ const PublicVendorTab = ({
 }: Partial<PublicProfileInfoType>) => {
   const [tabIndex, setTabIndex] = useState(1);
   const { t } = useTranslation();
-  const { data } = useGetAllProductsQuery({ page: 1, limit: 10 });
+  const { data } = useGetProductsQuery({ page: 1, limit: 10 });
 
   return (
     <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>

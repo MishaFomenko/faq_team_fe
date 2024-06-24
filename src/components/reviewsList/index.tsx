@@ -2,10 +2,6 @@ import { PublicProfileInfoType } from 'components/publicProfileInfo/types.ts';
 import ReviewCard from 'components/reviewCard';
 import { ReviewsWrapper } from 'components/reviewsList/styles.ts';
 
-import { PublicProfileInfoType } from 'components/publicProfileInfo/types.ts';
-import ReviewCard from 'components/reviewCard';
-import { ReviewsWrapper } from 'components/reviewsList/styles.ts';
-
 const ReviewsList = ({ userReviews }: Partial<PublicProfileInfoType>) => {
   return (
     <ReviewsWrapper>

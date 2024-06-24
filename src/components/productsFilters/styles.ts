@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { Theme } from 'styles/theme';
 
 export const FilterWrapper = styled.div<{ theme?: Theme }>`
-  width: 310px;
-  height: 712px;
+  // width: 310px;
+  // height: 712px;
   padding: 16px;
   box-sizing: border-box;
 `;

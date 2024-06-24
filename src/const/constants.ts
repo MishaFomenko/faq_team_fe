@@ -48,3 +48,5 @@ export const shownTextLimit = 20;
 
 export const showProductsLimit = 10;
 
+export const minRange = 0;
+export const maxRange = 10000;
