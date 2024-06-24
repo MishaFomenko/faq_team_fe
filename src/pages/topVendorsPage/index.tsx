@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useGetUsersQuery } from 'redux/superAdminApiSlice';
 
 import FiltersIcon from 'assets/icons/filtersIcon';
 import { TopVendorsList } from 'components/topVendorsList';
@@ -14,6 +15,13 @@ import {
 
 const TopVendorsPage = () => {
   const { t } = useTranslation();
+  const { data } = useGetUsersQuery({
+    page: 1,
+    limit: 10,
+    search: '',
+    order: 'ASC',
+    role: 'vendor',
+  });
 
   return (
     <>
@@ -32,7 +40,7 @@ const TopVendorsPage = () => {
           </FiltersWrap>
           <VendorsListtWrap>
             <StyledSearchbar>Searchbar</StyledSearchbar>
-            <TopVendorsList />
+            {data && <TopVendorsList data={data} />}
           </VendorsListtWrap>
         </TopVendorsSectionWrap>
       </TopVendorsSection>
