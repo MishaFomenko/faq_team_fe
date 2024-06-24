@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUpdateUserMutation } from 'redux/authApiSlice';
 
@@ -12,6 +13,7 @@ import {
   SubmitBtn,
   SubTitle,
 } from 'components/sharedUI/form/styles';
+import { paths } from 'const/paths.ts';
 import {
   isErrorWithMessage,
   isFetchBaseQueryError,
@@ -28,6 +30,7 @@ export const ConfirmCredentialsForm = ({
   const [isSet, setIsSet] = useState(false);
   const [update, { isLoading }] = useUpdateUserMutation();
   const confirmSchema = useConfirmCredentialsSchema();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -53,6 +56,7 @@ export const ConfirmCredentialsForm = ({
     try {
       await update({ id, data }).unwrap();
       setIsSet(true);
+      navigate(paths.fillProfile);
     } catch (err) {
       if (isFetchBaseQueryError(err)) {
         const errMsg = 'error' in err ? err.error : JSON.stringify(err.data);

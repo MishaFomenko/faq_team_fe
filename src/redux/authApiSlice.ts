@@ -11,7 +11,6 @@ import {
 } from 'redux/types';
 
 import { apiEndpoints } from 'const/apiEndpoints';
-import { paths } from 'const/paths';
 
 const appApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -32,13 +31,6 @@ const appApiSlice = apiSlice.injectEndpoints({
     getUser: builder.query<ResponseGetUser, string>({
       query: id => ({
         url: `${apiEndpoints.getUser}/${id}`,
-      }),
-    }),
-    findUser: builder.mutation<ResponseGetUser[], { token: string }>({
-      query: data => ({
-        url: `${apiEndpoints.findUser}`,
-        method: 'POST',
-        body: data,
       }),
     }),
 
@@ -91,7 +83,6 @@ export const {
   useLoginMutation,
   useRegistrationMutation,
   useRestorePassMutation,
-  useFindUserMutation,
   useNewPassMutation,
   useVerifyOtpMutation,
   useUpdateUserMutation,

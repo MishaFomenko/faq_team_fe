@@ -18,7 +18,7 @@ import { links } from 'const/links';
 export const VerifyEmailPage = () => {
   const { t } = useTranslation();
   const user = useAppSelector(state => state.auth.user);
-  console.log(user);
+
   return (
     <FormSection>
       <LogoContainer img={bgImg}></LogoContainer>

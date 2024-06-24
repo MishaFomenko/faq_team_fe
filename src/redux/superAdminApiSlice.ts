@@ -13,7 +13,7 @@ const adminApiSlice = apiSlice.injectEndpoints({
       ResponseGetUsersWithFilters,
       RequestGetUsersWithFilters
     >({
-      query: ({ page, limit, search, order, role = null }) => ({
+      query: ({ page, limit, search, order, role }) => ({
         url: `${apiEndpoints.getAllUsers}?page=${page}&limit=${limit}&search=${search}&order=${order}&role=${role}`,
       }),
       providesTags: ['USERS'],

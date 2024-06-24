@@ -6,14 +6,8 @@ const initialState: AuthState = {
     name: '',
     email: '',
     role: '',
-    id: localStorage.getItem('userId')
-      ? JSON.parse(localStorage.getItem('userId')!).id
-      : '',
     step: 1,
   },
-  access_token: localStorage.getItem('token')
-    ? JSON.parse(localStorage.getItem('token')!)
-    : null,
 };
 
 const authSlice = createSlice({

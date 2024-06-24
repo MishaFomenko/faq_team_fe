@@ -29,7 +29,8 @@
       "styles/*": ["styles/*"],
       "const/*": ["const/*"],
       "fonts/*": ["fonts/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"]
 }

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tab, TabList, TabPanel } from 'react-tabs';
-import { useGetUserQuery } from 'redux/authApiSlice';
-import { useAppSelector } from 'redux/hooks';
+import { useGetMeQuery } from 'redux/userApiSlice.ts';
 import { v4 as uuidv4 } from 'uuid';
 
 import StepFinished from 'assets/icons/steps/step_finished';
@@ -20,10 +19,7 @@ import {
 
 const FillProfileForm = () => {
   const { t } = useTranslation();
-  const userId = useAppSelector(state => state.auth.user.id);
-  console.log(userId);
-  const { data, refetch } = useGetUserQuery(userId);
-  console.log(data);
+  const { data, refetch } = useGetMeQuery();
 
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(0);
 

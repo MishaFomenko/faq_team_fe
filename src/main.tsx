@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <MuiThemeProvider theme={muiTheme}>
         <ThemeProvider theme={theme}>
-          <BrowserRouter basename="faq_team_fe">
+          <BrowserRouter basename="faq_team_fe/">
             <App />
           </BrowserRouter>
           <Global styles={globalStyles} />

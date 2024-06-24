@@ -6,6 +6,12 @@ import { ResponseGetUser } from './types';
 
 const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
+    getMe: builder.query<ResponseGetUser, string | undefined>({
+      query: () => ({
+        url: `${paths.getUser}/user`,
+      }),
+    }),
+
     getPublicInfo: builder.query<ResponseGetUser, string | undefined>({
       query: id => ({
         url: `${paths.getUser}/user/${id}`,
@@ -28,6 +34,7 @@ const userApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetMeQuery,
   useGetIsFollowingQuery,
   useFollowUserMutation,
   useGetPublicInfoQuery,

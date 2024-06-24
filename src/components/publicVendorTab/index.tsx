@@ -12,7 +12,6 @@ import { useGetProductsQuery } from '../../redux/productsApiSlice.ts';
 const PublicVendorTab = ({
   fullName,
   userReviews,
-  products,
 }: Partial<PublicProfileInfoType>) => {
   const [tabIndex, setTabIndex] = useState(1);
   const { t } = useTranslation();
@@ -22,7 +21,7 @@ const PublicVendorTab = ({
     <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
       <TabList>
         <Tab>
-          {t('titleText.products')}({products?.length})
+          {t('titleText.products')}({data?.products.length})
         </Tab>
         <Tab>
           {t('titleText.reviews')}({userReviews?.length})

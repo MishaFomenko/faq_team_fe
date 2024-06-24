@@ -7,7 +7,6 @@ export type User = {
   name: string;
   email: string;
   role: string;
-  id: string;
   step: number;
 };
 
@@ -77,7 +76,6 @@ export type ResponseLogin = {
 
 export type AuthState = {
   user: User;
-  access_token: string;
 };
 
 export type RequestUpdateUser = {
