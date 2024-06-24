@@ -2,8 +2,16 @@ import { apiSlice } from 'redux/apiSlice';
 
 import { paths } from 'const/paths';
 
+import { ResponseGetUser } from './types';
+
 const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
+    getPublicInfo: builder.query<ResponseGetUser, string | undefined>({
+      query: id => ({
+        url: `${paths.getUser}/user/${id}`,
+      }),
+    }),
+
     getIsFollowing: builder.query<boolean, string>({
       query: id => ({
         url: `${paths.getUser}/${id}/is-following`,
@@ -19,4 +27,8 @@ const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetIsFollowingQuery, useFollowUserMutation } = userApiSlice;
+export const {
+  useGetIsFollowingQuery,
+  useFollowUserMutation,
+  useGetPublicInfoQuery,
+} = userApiSlice;

@@ -4,6 +4,9 @@ import { Theme } from 'styles/theme.ts';
 
 export const ReviewsWrapper = styled.div<{ theme?: Theme }>`
   width: 100%;
+  height: 80vh;
+
+  overflow: scroll;
 
   h2 {
     margin: 24px 0;

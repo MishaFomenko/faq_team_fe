@@ -15,6 +15,9 @@ const PublicBuyerTab = ({ userReviews }: Partial<PublicProfileInfoType>) => {
         </Tab>
       </TabList>
       <TabPanel>
+        <h2>
+          {t('titleText.reviews')}({userReviews?.length})
+        </h2>
         <ReviewsList userReviews={userReviews} />
       </TabPanel>
     </Tabs>

@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { paths } from 'const/paths';
+import ProductFeed from 'pages/productFeed';
 import PublicProfilePage from 'pages/publicProfilePage';
 import { SharedLayout } from 'pages/sharedLayout';
 import { SuperAdminLayout } from 'pages/superAdminLayout';
@@ -48,6 +49,7 @@ function App() {
           <Route path={paths.profile} element={<ProfilePage />}>
             <Route index element={<PersonalInfoPage />} />
           </Route>
+          <Route path={paths.productFeed} element={<ProductFeed />} />
           <Route
             path={paths.confirmCredentials}
             element={<ConfirmCredentialsPage />}

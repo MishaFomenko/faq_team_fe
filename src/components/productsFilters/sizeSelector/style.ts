@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const SizeList = styled.div`
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 `;
 
 export const SizeButton = styled.button<{ selected: boolean; theme?: Theme }>`

@@ -5,9 +5,10 @@ import PublicVendorTab from 'components/publicVendorTab';
 import { userRoles } from 'const/constants.ts';
 
 const PublicProfileInfo = ({
+  fullName,
   userRole,
   userReviews,
-  userProducts,
+  products,
 }: PublicProfileInfoType) => {
   return (
     <PublicProfileInfoWrapper>
@@ -15,8 +16,9 @@ const PublicProfileInfo = ({
         <PublicBuyerTab userReviews={userReviews} />
       ) : (
         <PublicVendorTab
+          fullName={fullName}
           userReviews={userReviews}
-          userProducts={userProducts}
+          products={products}
         />
       )}
     </PublicProfileInfoWrapper>

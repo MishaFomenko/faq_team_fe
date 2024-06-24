@@ -16,7 +16,6 @@
     "termsLink": "Terms of Use",
     "google": "Sign Up with Google"
   },
-
   "verificationEmail": {
     "title": "Verification email",
     "subtitle": "We have sent an OTP verification code to your email, please enter it here",
@@ -25,23 +24,19 @@
     "resend": "Send Again",
     "submitBtn": "Verify"
   },
-
   "enterPhone": {
     "input": "Phone",
     "button": "Next"
   },
-
   "selectRole": {
     "title": "Select Role",
     "roleFirst": "Buyer",
     "roleSecond": "Vendor"
   },
-
   "addPhoto": {
     "title": "Add Your Photo",
     "uploadBtn": "Upload Photo"
   },
-
   "size": {
     "title": "Your Size",
     "clothes": "Clothes Size",
@@ -50,7 +45,6 @@
     "sizeLink": "size guide.",
     "sizeText": "All sizes in US format are indicated by default, and you can determine your US size using the "
   },
-
   "address": {
     "title": "Your Address",
     "subtittle": "Add your shipping address",
@@ -62,7 +56,6 @@
     "country": "Country",
     "post": "Post Code"
   },
-
   "fillProfile": {
     "header": "Fill Profile",
     "tab1": "User Role",
@@ -125,7 +118,6 @@
       "selectJeansSize": "Select jeans size"
     }
   },
-
   "card": {
     "title": "Your Credit Card",
     "subtitle": "Add your credit card",
@@ -136,7 +128,6 @@
     "expPlaceholder": "MM// YY",
     "cvv": "CVV Code"
   },
-
   "signIn": {
     "title": "Sign In",
     "subtitle": "Sign In with social networks",
@@ -153,7 +144,6 @@
     "policyLink": "Privacy Policy",
     "termsLink": "Terms of Use"
   },
-
   "confirmCredentials": {
     "title": "Confirm Your Credentials",
     "name": "Name*",
@@ -163,7 +153,6 @@
     "submitBtn": "Confirm",
     "new_name": "New name is set"
   },
-
   "restorePassword": {
     "title": "Restore password",
     "subtitle": "Enter your email to restore your password",
@@ -171,7 +160,6 @@
     "emailPlaceholder": "your_email@gmail.com",
     "button": "Send Code"
   },
-
   "enterCode": {
     "title": "Enter Code",
     "subtitle": "We have sent an OTP verification code to your email. Kindly input it here",
@@ -180,7 +168,6 @@
     "resend": "Send Again",
     "submitBtn": "Verify"
   },
-
   "restorePasswordSignIn": {
     "title": "New password",
     "subtitle": "Please enter your new password",
@@ -189,7 +176,6 @@
     "repeatPassword": "Repeat Password*",
     "button": "Save password"
   },
-
   "adminSignIn": {
     "title": "Sign In",
     "subtitle": "Please enter your credentials to sign in",
@@ -199,12 +185,10 @@
     "passwordPlaceholder": "********",
     "button": "Sign In"
   },
-
   "policy": {
     "title": "Privacy Policy",
     "terms": "Terms & Conditions"
   },
-
   "validation": {
     "email": "Email format is incorrect",
     "password": "Password format is incorrect",
@@ -214,9 +198,16 @@
     "credentials": "Please enter your credentials",
     "required": "Required"
   },
-
   "loading": {
     "text": "Loading..."
+  },
+
+  "loadMore": {
+    "text": "Load More"
+  },
+
+  "errors": {
+    "loadError": "Error while loading data. Try again later."
   },
 
   "privacyPolicy": {
@@ -224,12 +215,12 @@
     "title": "SomeTitle",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a viverra nisi. Curabitur at consectetur lectus, et dictum mauris.   Donec molestie ultricies justo, ac euismod tortor consequat suscipit. Pellentesque fermentum massa eget nisi tempus ornare. Aliquam porttitor viverra ante, ut venenatis erat vehicula id. Duis ultrices mauris euismod dictum luctus. Fusce vitae luctus ipsum. Cras condimentum, arcu quis molestie consectetur, sem mi rhoncus libero, ut mollis libero nulla eu ipsum. Phasellus vel finibus ligula. Donec id porttitor ligula, sed finibus enim. Fusce felis neque, egestas vel purus et, tempus lacinia est. Cras aliquet consectetur ligula at vulputate. Aenean nec lacus et sem mollis pulvinar. Donec ac ligula lacinia, molestie nisi et, auctor sem. Sed vel suscipit risus. Duis ipsum mauris, tristique eu congue ut, dictum sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut dapibus, odio nec feugiat elementum, metus nisl mattis elit, vitae egestas lectus elit vitae erat. Mauris ultricies ut mauris vel venenatis. Ut efficitur mauris rutrum, commodo nunc tempus, fringilla orci. Ut iaculis ullamcorper lacus, vel elementum libero euismod eget. Pellentesque faucibus pellentesque dolor. Duis id egestas mi"
   },
-
   "termsConditions": {
     "heading": "Terms & Conditions",
     "title": "SomeTitle",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a viverra nisi. Curabitur at consectetur lectus, et dictum mauris.   Donec molestie ultricies justo, ac euismod tortor consequat suscipit. Pellentesque fermentum massa eget nisi tempus ornare. Aliquam porttitor viverra ante, ut venenatis erat vehicula id. Duis ultrices mauris euismod dictum luctus. Fusce vitae luctus ipsum. Cras condimentum, arcu quis molestie consectetur, sem mi rhoncus libero, ut mollis libero nulla eu ipsum. Phasellus vel finibus ligula. Donec id porttitor ligula, sed finibus enim. Fusce felis neque, egestas vel purus et, tempus lacinia est. Cras aliquet consectetur ligula at vulputate. Aenean nec lacus et sem mollis pulvinar. Donec ac ligula lacinia, molestie nisi et, auctor sem. Sed vel suscipit risus. Duis ipsum mauris, tristique eu congue ut, dictum sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut dapibus, odio nec feugiat elementum, metus nisl mattis elit, vitae egestas lectus elit vitae erat. Mauris ultricies ut mauris vel venenatis. Ut efficitur mauris rutrum, commodo nunc tempus, fringilla orci. Ut iaculis ullamcorper lacus, vel elementum libero euismod eget. Pellentesque faucibus pellentesque dolor. Duis id egestas mi"
   },
+
   "dashboard": {
     "dashboardHeader": "Dashboard",
     "recentOrdersHeader": "Recent orders",
@@ -254,13 +245,13 @@
     "follow": "Follow",
     "followed": "Followed"
   },
-
+  
   "titleText": {
     "reviews": "Reviews",
     "products": "Products",
     "vendorCloset": "Vendor's Closet"
   },
-
+  
   "userInfo": {
     "noRate": "No rate"
   },
@@ -269,15 +260,109 @@
     "title": "My Profile",
     "mobTitle": "Your Profile",
     "username": "Your name",
-    "mode": { "buyer": "Buyer Mode", "vendor": "Vendor Mode" },
-    "button": { "buyer": "Go to Vendor", "vendor": "Go to Buyer" },
+    "mode": {
+      "buyer": "Buyer Mode",
+      "vendor": "Vendor Mode"
+    },
+    "button": {
+      "buyer": "Go to Vendor",
+      "vendor": "Go to Buyer"
+    },
     "navLinks": {
       "info": "Personal Information",
       "orders": "My Orders",
       "wishlist": "Wishlist",
       "support": "Support",
       "logout": "Log Out"
+    },
+    
+    "deleteAccount": {
+      "button": "Delete account",
+      "title": "Are you sure want to delete your account?",
+      "subtitle": "You will lose access to the application and all your data",
+      "cancel": "No",
+      "delete": "Yes"
+    },
+    
+    "editProfile": {
+      "title": "Personal Information",
+      "sizesTitle": "Sizes",
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "your_email@gmail.com",
+      "phone": "Phone",
+      "phonePlaceholder": "82120142305",
+      "sizes": {
+        "clothes": "Clothes Size",
+        "shoes": "Shoes Size",
+        "jeans": "Jeans Size"
+      },
+      
+      "sizeLink": "Size guide",
+      "address": "Address",
+      "addressPlaceholder": "Your address",
+      "addressOne": "Address Line 1",
+      "addressTwo": "Address Line 2 (optional)",
+      "city": "City",
+      "country": "Country",
+      "state": "State",
+      "card": "Payment Method",
+      "cardPlaceholder": "**** **** **** 4567",
+      "button": "Save",
+      "footer": {
+        "text": "Some text will be here two - three lines",
+        "shop": "Shop",
+        "login": "Login",
+        "wishlist": "Wishlist",
+        "cart": "Cart",
+        "company": "Company",
+        "about": "About us",
+        "terms": "Terms & Conditions",
+        "privacy": "Privacy Policy",
+        "contact": "Contact Us",
+        "help": "Help",
+        "faq": "FAQs",
+        "delivery": "Shipping and Delivery",
+        "rent": "Rent your closet",
+        "resell": "Resell your closet",
+        "copyright": "© 2023 Black Cycle"
+      },
+      
+      "header": {
+        "shop": "Shop",
+        "vendor": "Vendor",
+        "messages": "Messages"
+      },
+      
+      "admin": {
+        "usersTitle": "Users",
+        "usersSubTitle": "User List",
+        "sort": "Sort",
+        "products": "Products",
+        "chat": "Chat",
+        "roles": "User Roles"
+      },
+      
+      "table": {
+        "name": "NAME",
+        "email": "EMAIL",
+        "address": "ADDRESS",
+        "date": "DATE",
+        "action": "ACTIONS"
+      },
+
+      "viewProfile": {
+        "title": "Profile",
+        "name": "Name",
+        "email": "Email",
+        "status": "Status",
+        "phone": "Phone",
+        "address": "Complete address"
+      }
+    }
   },
+  
   "deleteAccount": {
     "button": "Delete account",
     "title": "Are you sure want to delete your account?",
@@ -311,8 +396,8 @@
     "card": "Payment Method",
     "cardPlaceholder": "**** **** **** 4567",
     "button": "Save"
-}
 },
+
 "admin": {
   "usersTitle": "Users",
   "usersSubTitle": "User List",
@@ -321,6 +406,7 @@
   "chat": "Chat",
   "roles": "User Roles"
 },
+
 "table": {
   "name":"NAME",
   "email": "EMAIL",
@@ -328,6 +414,7 @@
   "date": "DATE",
   "action": "ACTIONS"
 },
+
 "footer": {
   "text": "Some text will be here two - three lines",
   "shop": "Shop",
@@ -346,11 +433,13 @@
   "resell": "Resell your closet",
   "copyright": "© 2023 Black Cycle"
 },
+
 "header": {
   "shop": "Shop",
   "vendor": "Vendor",
   "messages": "Messages"
 },
+
 "viewProfile": {
   "title": "Profile",
   "name":"Name",
@@ -359,6 +448,7 @@
   "phone": "Phone",
   "address": "Complete address"
 },
+
 "productsFilter": {
     "price": "Price",
     "size": "Size",

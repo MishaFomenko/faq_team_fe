@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
+import { useGetPublicInfoQuery } from 'redux/userApiSlice.ts';
+
 
 import PublicProfileInfo from 'components/publicProfileInfo';
 import PublicProfileSidebar from 'components/publicProfileSidebar';
 import { PublicProfileContainer } from 'pages/publicProfilePage/styles.ts';
-
-import { useGetPublicInfoQuery } from '../../redux/authApiSlice.ts';
 
 const PublicProfilePage = () => {
   const { id: userTargetId } = useParams();
@@ -20,9 +20,10 @@ const PublicProfilePage = () => {
         />
       )}
       <PublicProfileInfo
+        fullName={data?.full_name}
         userReviews={data?.user_reviews}
         userRole={data?.user_role}
-        userProducts={data?.products}
+        products={data?.products}
       />
     </PublicProfileContainer>
   );

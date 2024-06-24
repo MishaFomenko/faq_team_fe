@@ -41,11 +41,6 @@ const appApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    getPublicInfo: builder.query<ResponseGetUser, string | undefined>({
-      query: id => ({
-        url: `${paths.getUser}/user/${id}`,
-      }),
-    }),
 
     restorePass: builder.mutation({
       query: data => ({
@@ -97,11 +92,10 @@ export const {
   useRegistrationMutation,
   useRestorePassMutation,
   useFindUserMutation,
-  useGetUserQuery,
   useNewPassMutation,
   useVerifyOtpMutation,
   useUpdateUserMutation,
   useSaveGeneralInfoMutation,
   useSaveCardInfoMutation,
-  useGetPublicInfoQuery,
+  useGetUserQuery,
 } = appApiSlice;

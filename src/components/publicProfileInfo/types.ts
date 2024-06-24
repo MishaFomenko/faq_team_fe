@@ -1,7 +1,10 @@
 import { ResponseGetProduct, UserReview } from 'redux/types';
 
 export type PublicProfileInfoType = {
+  fullName?: string;
   userRole?: string;
   userReviews?: UserReview[];
-  userProducts?: ResponseGetProduct[];
+  products?: ResponseGetProduct[];
+  cardSize?: string;
+  gapSize?: string;
 };
