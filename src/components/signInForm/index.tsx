@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { setToken } from 'redux/auth/authSlice';
+import { setEmail, setToken, setUserId } from 'redux/auth/authSlice';
 import { useLoginMutation, useRestorePassMutation } from 'redux/authApiSlice';
 import { useAppDispatch } from 'redux/hooks';
 
@@ -15,6 +15,7 @@ import {
   StyledForm,
   SubmitBtn,
 } from 'components/sharedUI/form/styles';
+import { fillProfileMaxStep } from 'const/constants';
 import { paths } from 'const/paths';
 import {
   isErrorWithMessage,
@@ -51,13 +52,17 @@ export const SignInForm = () => {
   const onSubmit: SubmitHandler<Inputs> = async data => {
     try {
       const response = await login(data).unwrap();
+      dispatch(setUserId(response?.id));
+      dispatch(setToken(response?.access_token));
+      dispatch(setEmail(data.email));
       if (!response?.is_verified) {
-        await sendOtp(data.email);
+        await sendOtp({ email: data.email });
         reset();
-        navigate('');
-      } else {
-        dispatch(setToken(response?.access_token));
+        navigate(paths.verifyEmail);
+      } else if (response?.filled_profile_step < fillProfileMaxStep) {
         console.log(response.access_token);
+        navigate(paths.fillProfile);
+      } else {
         navigate(paths.root);
       }
     } catch (err) {

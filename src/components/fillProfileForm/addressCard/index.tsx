@@ -68,6 +68,7 @@ const AddressForm = ({ setSelectedIndex, index, data }: TabProps) => {
         country: addressData.country,
         state: addressData.state,
         city: addressData.city,
+        filled_profile_step: 3,
       },
     }).unwrap();
     !data.stripe_id ? setSelectedIndex(index + 1) : setSelectedIndex(index + 2);

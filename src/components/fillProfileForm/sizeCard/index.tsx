@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUpdateUserMutation } from 'redux/authApiSlice';
 import { v4 as uuidv4 } from 'uuid';
@@ -26,11 +27,12 @@ import {
   TabProps,
 } from 'components/fillProfileForm/types';
 import useFillProfileSchemas from 'components/fillProfileForm/validation';
-
-const userId = '8a6e0804-2bd0-4672-b79d-d97027f9071a';
+import { paths } from 'const/paths';
 
 const SizeForm = ({ setSelectedIndex, index, data }: TabProps) => {
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
 
   const [registrationUpdate] = useUpdateUserMutation();
   const { sizeSchema } = useFillProfileSchemas();
@@ -57,13 +59,15 @@ const SizeForm = ({ setSelectedIndex, index, data }: TabProps) => {
 
   const onSubmit: SubmitHandler<Sizes> = async sizesData => {
     await registrationUpdate({
-      id: userId,
+      id: data.id,
       data: {
         cloth_size: sizesData.clothSize,
         shoes_size: sizesData.shoeSize,
         jeans_size: sizesData.jeansSize,
+        filled_profile_step: 5,
       },
     }).unwrap();
+    navigate(paths.root);
   };
 
   return (

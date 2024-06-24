@@ -1,23 +1,24 @@
-import { OtpForm } from 'components/otpForm';
 import { useTranslation } from 'react-i18next';
-import {
-  FormHeader,
-  LogoContainer,
-  FormSection,
-  SubTitle,
-  Title,
-  FormContainer,
-} from 'components/sharedUI/form/styles';
+import { useAppSelector } from 'redux/hooks.ts';
+
 import bgImg from 'assets/images/sign-in.png';
 import { ArrowBackLink } from 'components/arrowBackLink';
-import { useAppSelector } from 'redux/hooks.ts';
-import { links } from 'const/links';
+import { OtpForm } from 'components/otpForm';
+import {
+  FormContainer,
+  FormHeader,
+  FormSection,
+  LogoContainer,
+  SubTitle,
+  Title,
+} from 'components/sharedUI/form/styles';
 import { otpFormVersions } from 'const/constants';
+import { links } from 'const/links';
 
 export const VerifyOtpPage = () => {
   const { t } = useTranslation();
   const user = useAppSelector(state => state.auth.user);
-  
+
   return (
     <FormSection>
       <LogoContainer img={bgImg}></LogoContainer>

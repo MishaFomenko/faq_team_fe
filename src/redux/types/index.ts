@@ -8,6 +8,7 @@ export type User = {
   email: string;
   role: string;
   id: string;
+  step: number;
 };
 
 export type RequestRegistration = {
@@ -17,7 +18,7 @@ export type RequestRegistration = {
 };
 
 export type ResponseRegistration = {
-  email: string;
+  id: string;
 };
 
 export type ResponseGetUser = {
@@ -25,7 +26,6 @@ export type ResponseGetUser = {
   created_at: Date;
   full_name: string;
   email: string;
-  password?: string;
   is_verified: boolean;
   filled_profile_step: number;
   otp_code?: string;
@@ -38,13 +38,11 @@ export type ResponseGetUser = {
   address_2?: string;
   country?: string;
   city?: string;
+  state?: string;
   cloth_size?: string;
   jeans_size?: string;
   shoes_size?: number;
   avgRate?: number;
-  user_reviews?: UserReview[];
-  rates?: number;
-  products?: ResponseGetProduct[];
 };
 
 export type ResponseGetProduct = {
@@ -71,8 +69,10 @@ export type RequestLogin = {
 };
 
 export type ResponseLogin = {
+  id: string;
   access_token: string;
   is_verified: boolean;
+  filled_profile_step: number;
 };
 
 export type AuthState = {
@@ -134,7 +134,6 @@ export type ResponseGetUsersWithFilters = {
   totalCount: number;
 };
 
-
 export type ResponseGetProductsWithFilters = {
   products: ResponseGetProduct[];
   totalCount: number;
@@ -165,4 +164,3 @@ export type RecentSales = {
   order_price: number;
   product_product_name: string;
 }[];
-

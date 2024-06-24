@@ -3,6 +3,7 @@ import { ESort } from 'enums/sortEnum';
 import { useGetProductsQuery } from 'redux/productsApiSlice';
 
 import Filter from 'components/productsFilters';
+import ProductsList from 'components/productsList';
 import SearchInput from 'components/searchInput';
 
 import { HomeSection } from './styles';
@@ -14,13 +15,14 @@ const HomePage = () => {
   const [search, setSearch] = useState<string>('');
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [order, setOrder] = useState<ESort.ASC | ESort.DESC>(ESort.ASC);
-  const { data } = useGetProductsQuery({
+  const { data, refetch } = useGetProductsQuery({
     search: debouncedSearch,
     page: currentPage,
     limit: limit,
     order,
   });
   const products = data?.products ?? [];
+  console.log(data);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -34,6 +36,7 @@ const HomePage = () => {
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+    refetch();
   };
 
   const handleLoadMore = () => {
@@ -62,11 +65,12 @@ const HomePage = () => {
             </button>
           </div>
           <div className="products">
-            {products.map(product => (
-              <div key={product.id}>
-                <div>{product.product_name}</div>
-              </div>
-            ))}
+            {/* {products.map(product => ( */}
+            <div>
+              {/* <div>{product.product_name}</div> */}
+              <ProductsList userProducts={products} />
+            </div>
+            {/* ))} */}
           </div>
           <button onClick={handleLoadMore}>Load more</button>
         </div>

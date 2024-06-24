@@ -3,8 +3,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { setEmail } from 'redux/auth/authSlice';
-import { useRegistrationMutation } from 'redux/authApiSlice';
+import { setEmail, setUserId } from 'redux/auth/authSlice';
+import {
+  useRegistrationMutation,
+  useRestorePassMutation,
+} from 'redux/authApiSlice';
 import { useAppDispatch } from 'redux/hooks';
 
 import EyeIcon from 'assets/icons/iconEye';
@@ -14,6 +17,7 @@ import {
   StyledForm,
   SubmitBtn,
 } from 'components/sharedUI/form/styles';
+import { paths } from 'const/paths';
 import {
   isErrorWithMessage,
   isFetchBaseQueryError,
@@ -24,6 +28,8 @@ import { Inputs } from './types';
 
 export const SignUpForm = () => {
   const [registration, { isLoading }] = useRegistrationMutation();
+  const [sendOtp] = useRestorePassMutation();
+
   const signUpSchema = useSignUpSchema();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -47,14 +53,16 @@ export const SignUpForm = () => {
   const onSubmit: SubmitHandler<Inputs> = async data => {
     try {
       const { name, email, password } = data;
-      const response = await registration({
+      const userId = await registration({
         full_name: name,
         email,
         password,
       }).unwrap();
-      dispatch(setEmail(response?.email));
+      dispatch(setEmail(email));
+      dispatch(setUserId(userId));
       reset();
-      navigate('');
+      await sendOtp({ email: data.email });
+      navigate(paths.verifyEmail);
     } catch (err) {
       if (isFetchBaseQueryError(err)) {
         const errMsg = 'error' in err ? err.error : JSON.stringify(err.data);

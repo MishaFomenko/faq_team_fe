@@ -22,7 +22,6 @@ export const paths = {
   userList: '/admin/user-list',
   superAdminRoot: '/admin',
   viewUserProfile: '/admin/view-profile/',
-  fillProfile: '/fill-profile',
   orders: '#',
   wishlist: '#',
   support: '#',

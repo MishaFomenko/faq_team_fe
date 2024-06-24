@@ -2,7 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthState } from 'redux/types';
 
 const initialState: AuthState = {
-  user: { name: '', email: '', role: '', id: '' },
+  user: {
+    name: '',
+    email: '',
+    role: '',
+    id: localStorage.getItem('userId')
+      ? JSON.parse(localStorage.getItem('userId')!).id
+      : '',
+    step: 1,
+  },
   access_token: localStorage.getItem('token')
     ? JSON.parse(localStorage.getItem('token')!)
     : null,
@@ -18,6 +26,7 @@ const authSlice = createSlice({
 
     setUserId: (state, action: PayloadAction<string>) => {
       state.user.id = action.payload;
+      localStorage.setItem('userId', JSON.stringify(action.payload));
     },
 
     setToken: (state, action) => {
@@ -27,6 +36,7 @@ const authSlice = createSlice({
 
     clearToken: state => {
       state.access_token = '';
+      localStorage.temoveItem('token');
     },
   },
 });

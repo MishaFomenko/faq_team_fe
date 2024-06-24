@@ -1,4 +1,13 @@
+import { useRef } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import {
+  useRestorePassMutation,
+  useVerifyOtpMutation,
+} from 'redux/authApiSlice.ts';
+
+import { useOtpTimer } from 'components/otpForm/otpFormHooks';
 import {
   InputContainer,
   OtpFrom,
@@ -6,23 +15,20 @@ import {
   VerifyBtn,
   VerifyInfoContainer,
 } from 'components/otpForm/styles.ts';
-import {
-  useRestorePassMutation,
-  useVerifyOtpMutation,
-} from 'redux/authApiSlice.ts';
-import { useNavigate } from 'react-router-dom';
-import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import { OptFormProps, OtpFormValue } from 'components/otpForm/types';
+import {
+  clockPrecision,
+  fillProfileMaxStep,
+  otpExpirationTime,
+  otpFormVersions,
+  otpNumberOfDigits,
+} from 'const/constants';
 import { paths } from 'const/paths';
-import { useRef } from 'react';
-import { otpFormVersions } from 'const/constants';
-import { otpExpirationTime, clockPrecision, otpNumberOfDigits} from 'const/constants';
-import { useOtpTimer } from 'components/otpForm/otpFormHooks';
 
 const otpInputMaxLength = 1;
-const otpInputPlaceholder = "1";
+const otpInputPlaceholder = '1';
 
-export const OtpForm = ({ email, action }: OptFormProps) => {
+export const OtpForm = ({ step, email, action }: OptFormProps) => {
   const { t } = useTranslation();
 
   const { timer, resetTimer } = useOtpTimer(otpExpirationTime, clockPrecision);
@@ -78,7 +84,11 @@ export const OtpForm = ({ email, action }: OptFormProps) => {
       }).unwrap();
 
       if (action === otpFormVersions.verifyEmail) {
-        navigate(paths.root);
+        if (step > fillProfileMaxStep) {
+          navigate(paths.root);
+        } else {
+          navigate(paths.fillProfile);
+        }
       } else {
         navigate(paths.newPassword);
       }

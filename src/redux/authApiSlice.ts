@@ -11,6 +11,7 @@ import {
 } from 'redux/types';
 
 import { apiEndpoints } from 'const/apiEndpoints';
+import { paths } from 'const/paths';
 
 const appApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -30,7 +31,7 @@ const appApiSlice = apiSlice.injectEndpoints({
     }),
     getUser: builder.query<ResponseGetUser, string>({
       query: id => ({
-        url: `${USERS_URL}${paths.getUser}/${id}`,
+        url: `${apiEndpoints.getUser}/${id}`,
       }),
     }),
     findUser: builder.mutation<ResponseGetUser[], { token: string }>({
@@ -62,16 +63,23 @@ const appApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateUser: builder.mutation({
+      query: ({ data, id }) => ({
+        url: `${apiEndpoints.updateUser}/${id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+    }),
     saveGeneralInfo: builder.mutation({
       query: data => ({
-        url: `${USERS_URL}${paths.saveGeneralInfo}`,
+        url: `${apiEndpoints.saveGeneralInfo}`,
         method: 'POST',
         body: data,
       }),
     }),
     saveCardInfo: builder.mutation({
       query: data => ({
-        url: `${USERS_URL}${paths.saveCardInfo}`,
+        url: `${apiEndpoints.saveCardInfo}`,
         method: 'POST',
         body: { paymentMethod: data.paymentMethod, id: data.id },
       }),

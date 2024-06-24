@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import PhoneInput from 'react-phone-number-input';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useGetUserQuery } from 'redux/authApiSlice';
+
 import EditIcon from 'assets/icons/editIcon';
 import defaultAvatar from 'assets/images/default-avatar.png';
 import CreditCardForm from 'components/cardInfoCard';
@@ -41,8 +43,11 @@ const avatarSize: number = 120;
 const phoneCountry = 'US';
 
 export const EditProfileForm = () => {
+  const userId = JSON.parse(localStorage.getItem('userId')!);
+
   const [avatar, setAvatar] = useState<string>('');
   const { t } = useTranslation();
+  const { data } = useGetUserQuery(userId);
   const editProfileSchema = useEditProfileSchema();
   const {
     reset,
@@ -68,6 +73,24 @@ export const EditProfileForm = () => {
     },
     resolver: yupResolver(editProfileSchema),
   });
+  useEffect(() => {
+    if (data) {
+      reset({
+        avatar: data.avatar || null,
+        name: data.full_name || '',
+        email: data.email || '',
+        phone: data.phone || '',
+        clothes: data.cloth_size || clothesSizes[0],
+        shoes: data.shoes_size || shoesSizes[0],
+        jeans: data.jeans_size || jeansSizes[0],
+        addressOne: data.address || '',
+        addressTwo: data.address_2 || '',
+        country: data.country || 'Canada',
+        states: data.state || states[0],
+        cities: data.city || cities[0],
+      });
+    }
+  }, [data, reset]);
 
   const onSubmit: SubmitHandler<Inputs> = data => {
     JSON.stringify(data);

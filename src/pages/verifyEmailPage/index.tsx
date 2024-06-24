@@ -1,23 +1,24 @@
-import { OtpForm } from 'components/otpForm';
 import { useTranslation } from 'react-i18next';
-import {
-  FormHeader,
-  LogoContainer,
-  FormSection,
-  SubTitle,
-  Title,
-  FormContainer,
-} from 'components/sharedUI/form/styles';
+import { useAppSelector } from 'redux/hooks.ts';
+
 import bgImg from 'assets/images/verification.png';
 import { ArrowBackLink } from 'components/arrowBackLink';
-import { useAppSelector } from 'redux/hooks.ts';
-import { links } from 'const/links';
+import { OtpForm } from 'components/otpForm';
+import {
+  FormContainer,
+  FormHeader,
+  FormSection,
+  LogoContainer,
+  SubTitle,
+  Title,
+} from 'components/sharedUI/form/styles';
 import { otpFormVersions } from 'const/constants';
+import { links } from 'const/links';
 
 export const VerifyEmailPage = () => {
   const { t } = useTranslation();
   const user = useAppSelector(state => state.auth.user);
-  
+  console.log(user);
   return (
     <FormSection>
       <LogoContainer img={bgImg}></LogoContainer>
@@ -29,7 +30,11 @@ export const VerifyEmailPage = () => {
           </Title>
           <SubTitle>{t('verificationEmail.subtitle')}</SubTitle>
         </FormHeader>
-        <OtpForm email={user.email} action={otpFormVersions.verifyEmail} />
+        <OtpForm
+          step={user.step}
+          email={user.email}
+          action={otpFormVersions.verifyEmail}
+        />
       </FormContainer>
     </FormSection>
   );

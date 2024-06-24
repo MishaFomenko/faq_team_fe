@@ -1,6 +1,7 @@
 export type OptFormProps = {
   email: string;
   action: string;
+  step: number;
 };
 
 export type OtpFormValue = {

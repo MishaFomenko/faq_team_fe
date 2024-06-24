@@ -49,7 +49,7 @@ const RoleCard = ({ setSelectedIndex, index, data }: TabProps) => {
   const onSubmit: SubmitHandler<RoleFormData> = async roleData => {
     await registrationUpdate({
       id: data.id,
-      data: { user_role: roleData.role },
+      data: { user_role: roleData.role, filled_profile_step: 1 },
     }).unwrap();
     setSelectedIndex(index + 1);
   };

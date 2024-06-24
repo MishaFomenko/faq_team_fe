@@ -1,5 +1,5 @@
 export type Inputs = {
-  avatar: File | null;
+  avatar: File | string | null;
   name: string;
   email: string;
   phone: string;
