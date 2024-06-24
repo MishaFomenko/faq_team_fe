@@ -69,7 +69,7 @@ export const StyledForm = styled.form<{ theme?: Theme }>`
 
     button {
       position: absolute;
-      top: 50%;
+      top: 60%;
       right: 16px;
       background-color: transparent;
       padding: 0;

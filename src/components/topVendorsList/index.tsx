@@ -7,8 +7,8 @@ import 'swiper/css/pagination';
 
 import BuyIcon from 'assets/icons/iconBuy';
 import defaultAvatar from 'assets/images/default-avatar.png';
+import productImg from 'assets/images/product.png';
 
-import { vendors } from './data/vendors';
 import {
   ImgWrap,
   ProductCardBottom,
@@ -21,10 +21,11 @@ import {
   VendorsListItem,
 } from './styles';
 
-export const TopVendorsList = () => {
+export const TopVendorsList = ({ data }) => {
+  console.log(data);
   return (
     <ul>
-      {vendors.map((vendor, id) => {
+      {data.users.map((vendor, id) => {
         return (
           <VendorsListItem key={id}>
             <ImgWrap>
@@ -32,7 +33,7 @@ export const TopVendorsList = () => {
                 src={vendor.avatar ? vendor.avatar : defaultAvatar}
                 alt="vendor-avatar"
               />
-              <VendorName>{vendor.vendorName}</VendorName>
+              <VendorName>{vendor.full_name}</VendorName>
             </ImgWrap>
 
             <ProductsList>
@@ -61,12 +62,12 @@ export const TopVendorsList = () => {
                   return (
                     <SwiperSlide key={id}>
                       <li>
-                        <img src={product.img} alt="product" />
+                        <img src={product.img || productImg} alt="product" />
                         <ProductCardBottom>
                           <div>
-                            <ProductName>{product.productName}</ProductName>
-                            <ProductPrice>{product.productPrice}</ProductPrice>
-                            <VendorCardName>{product.vendor}</VendorCardName>
+                            <ProductName>{product.product_name}</ProductName>
+                            <ProductPrice>{product.price}</ProductPrice>
+                            <VendorCardName>{vendor.full_name}</VendorCardName>
                           </div>
                           <button type="button">
                             <BuyIcon />
