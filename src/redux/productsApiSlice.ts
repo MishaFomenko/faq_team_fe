@@ -33,4 +33,5 @@ const productsApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetProductsQuery } = productsApiSlice;
+export const { useGetProductsQuery, useLazyGetProductsQuery } =
+  productsApiSlice;

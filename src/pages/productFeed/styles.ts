@@ -5,7 +5,7 @@ import { Theme } from 'styles/theme.ts';
 export const ProductFeedContainer = styled.div`
   display: flex;
 
-  padding: 0 63px;
+  padding: 0 15px;
 `;
 export const FilterSection = styled.div`
   width: 23%;

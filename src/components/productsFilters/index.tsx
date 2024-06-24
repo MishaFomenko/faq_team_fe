@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { maxRange, minRange } from 'const/constants';
 
 import ColorSelector from './colorSelector';
 import DualRangeSlider from './priceRange';
 import SizeSelector from './sizeSelector';
-import {
-  Actions,
-  CheckboxInput,
-  CheckboxLabel,
-  FilterWrapper,
-  Section,
-  SectionTitle,
-} from './styles';
+import { Actions, FilterWrapper, Section, SectionTitle } from './styles';
 import StyleSelector from './styleSelector';
 
-const minRange = 0;
-const maxRange = 10000;
+type FilterProps = {
+  priceRange: number[];
+  setPriceRange: (range: number[]) => void;
+  selectedColor: string | null;
+  setSelectedColor: (color: string | null) => void;
+  selectedSize: string | null;
+  setSelectedSize: (size: string | null) => void;
+  selectedStyle: string | null;
+  setSelectedStyle: (style: string | null) => void;
+  handleApply: () => void;
+};
 
-const Filter: React.FC = () => {
-  const [priceRange, setPriceRange] = useState([minRange, maxRange]);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [showOnlyMySizes, setShowOnlyMySizes] = useState<boolean>(false);
-  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+const Filter: React.FC<FilterProps> = ({
+  priceRange,
+  setPriceRange,
+  selectedColor,
+  setSelectedColor,
+  selectedSize,
+  setSelectedSize,
+  selectedStyle,
+  setSelectedStyle,
+  handleApply,
+}) => {
   const { t } = useTranslation();
 
   const handleClear = () => {
@@ -30,18 +39,6 @@ const Filter: React.FC = () => {
     setSelectedSize(null);
     setSelectedStyle(null);
     setPriceRange([minRange, maxRange]);
-    setShowOnlyMySizes(false);
-  };
-
-  const handleApply = () => {
-    // TODO add logic to send request with filters
-    console.log({
-      color: selectedColor,
-      size: selectedSize,
-      style: selectedStyle,
-      price: priceRange,
-      checkbox: showOnlyMySizes,
-    });
   };
 
   return (
@@ -61,7 +58,6 @@ const Filter: React.FC = () => {
       </Section>
       <Section>
         <SectionTitle>{t('productsFilter.color')}</SectionTitle>
-        <span>{selectedColor}</span>
         <ColorSelector
           selectedColor={selectedColor}
           setSelectedColor={setSelectedColor}
@@ -73,14 +69,6 @@ const Filter: React.FC = () => {
           selectedSize={selectedSize}
           setSelectedSize={setSelectedSize}
         />
-        <CheckboxLabel>
-          <CheckboxInput
-            type="checkbox"
-            checked={showOnlyMySizes}
-            onChange={e => setShowOnlyMySizes(e.target.checked)}
-          />
-          {t('productsFilter.checkbox')}
-        </CheckboxLabel>
       </Section>
       <Section>
         <SectionTitle>{t('productsFilter.style')}</SectionTitle>

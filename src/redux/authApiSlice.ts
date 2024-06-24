@@ -89,4 +89,5 @@ export const {
   useUpdateUserMutation,
   useSaveGeneralInfoMutation,
   useSaveCardInfoMutation,
+  useGetUserQuery,
 } = appApiSlice;
