@@ -1,27 +1,31 @@
 import { useTranslation } from 'react-i18next';
+
+import GoogleIcon from 'assets/icons/iconGoogle';
+import LogoIcon from 'assets/icons/iconLogo';
 import bgImg from 'assets/images/sign-in.png';
 import { ArrowBackLink } from 'components/arrowBackLink';
+import UseProtectRoute from 'components/hooks/useProtectRoute.ts';
 import {
-  FormSection,
-  LogoContainer,
   FormContainer,
   FormHeader,
-  PolicyLink,
-  ListContainer,
   FormLink,
-  SubTitle,
-  Title,
+  FormSection,
   Google,
-  Text,
+  ListContainer,
+  LogoContainer,
   LogoWrap,
+  PolicyLink,
+  SubTitle,
+  Text,
+  Title,
 } from 'components/sharedUI/form/styles';
-import LogoIcon from 'assets/icons/iconLogo';
 import { SignInForm } from 'components/signInForm';
-import GoogleIcon from 'assets/icons/iconGoogle';
-import { paths } from 'const/paths';
 import { links } from 'const/links';
+import { paths } from 'const/paths';
 
 const SignInPage = () => {
+  UseProtectRoute();
+
   const { t } = useTranslation();
 
   const verifyGoogle = async () => {

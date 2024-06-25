@@ -1,8 +1,13 @@
 import { MouseEvent, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { useDeleteMeMutation } from 'redux/userApiSlice.ts';
+
 import CloseIcon from 'assets/icons/iconClose';
 import DeleteIcon from 'assets/icons/iconDelete';
+import { paths } from 'const/paths.ts';
 
 import { Backdrop, CancelBtn, CloseBtn, DeleteBtn, Modal } from './styles';
 import { DeleteAccountModalProps } from './types';
@@ -18,6 +23,8 @@ export const DeleteAccountModal = ({
   onClose,
 }: DeleteAccountModalProps) => {
   const { t } = useTranslation();
+  const [deleteUser] = useDeleteMeMutation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleModalCloseByEsc = (evt: KeyboardEvent): void => {
@@ -49,6 +56,16 @@ export const DeleteAccountModal = ({
     return null;
   }
 
+  const handleDelete = async () => {
+    try {
+      await deleteUser().unwrap();
+      Cookies.remove('access_token');
+      navigate(paths.signUp);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return createPortal(
     <>
       <Backdrop onClick={handleModalCloseByClickOnBackdrop}>
@@ -66,7 +83,9 @@ export const DeleteAccountModal = ({
               </CancelBtn>
             </li>
             <li>
-              <DeleteBtn type="submit">{t('deleteAccount.delete')}</DeleteBtn>
+              <DeleteBtn type="button" onClick={handleDelete}>
+                {t('deleteAccount.delete')}
+              </DeleteBtn>
             </li>
           </ul>
         </Modal>

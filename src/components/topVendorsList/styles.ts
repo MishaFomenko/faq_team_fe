@@ -14,6 +14,11 @@ export const VendorsListItem = styled.li<{ theme?: Theme }>`
   }
 `;
 
+export const InfoWrapper = styled.div<{ theme?: Theme }>`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
 export const ImgWrap = styled.div<{ theme?: Theme }>`
   display: inline-flex;
   align-items: center;

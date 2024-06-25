@@ -54,8 +54,21 @@ export const TopVendorsSection = styled(Section)`
   padding-bottom: 49px;
 `;
 
+export const TopVendorsWrapper = styled.div`
+  max-width: 1440px;
+  padding: 50px 30px;
+  margin: 0 auto;
+`;
+
+export const BtnWrapper = styled.div`
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const FiltersWrap = styled.div<{ theme?: Theme }>`
-  display: none;
+  width: 30%;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     display: block;
@@ -72,13 +85,12 @@ export const StyledSearchbar = styled.p<{ theme?: Theme }>`
 export const TopVendorsSectionWrap = styled.div<{ theme?: Theme }>`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     display: flex;
-    gap: 30px;
-    flex-basis: calc(100% - 30px / 2);
   }
 `;
 
 export const VendorsListtWrap = styled.div<{ theme?: Theme }>`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    width: 80%;
     flex-grow: 1;
   }
 `;

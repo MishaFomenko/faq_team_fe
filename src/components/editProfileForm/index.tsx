@@ -5,7 +5,6 @@ import PhoneInput from 'react-phone-number-input';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useGetUserQuery } from 'redux/authApiSlice';
 
 import EditIcon from 'assets/icons/editIcon';
 import defaultAvatar from 'assets/images/default-avatar.png';
@@ -14,6 +13,7 @@ import { ErrorMsg } from 'components/sharedUI/form/styles';
 
 import 'react-phone-number-input/style.css';
 
+import { useGetMeQuery } from '../../redux/userApiSlice.ts';
 import {
   cities,
   clothesSizes,
@@ -43,11 +43,9 @@ const avatarSize: number = 120;
 const phoneCountry = 'US';
 
 export const EditProfileForm = () => {
-  const userId = JSON.parse(localStorage.getItem('userId')!);
-
   const [avatar, setAvatar] = useState<string>('');
   const { t } = useTranslation();
-  const { data } = useGetUserQuery(userId);
+  const { data } = useGetMeQuery();
   const editProfileSchema = useEditProfileSchema();
   const {
     reset,

@@ -30,6 +30,13 @@ const userApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
       }),
     }),
+
+    deleteMe: builder.mutation<void, string>({
+      query: () => ({
+        url: `${paths.getUser}/user/delete`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -38,4 +45,5 @@ export const {
   useGetIsFollowingQuery,
   useFollowUserMutation,
   useGetPublicInfoQuery,
+  useDeleteMeMutation,
 } = userApiSlice;
