@@ -36,16 +36,13 @@ import {
 } from './styles';
 import { getLast12Months } from './utils';
 
-const userId = '5d4a7b3e-2f6d-4a3b-8e7d-9b6a5d4e3a7e';
-
-const Dashboard = () => {
+const Dashboard = ({ userId }: { userId: string }) => {
   const { t } = useTranslation();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const pieContainerRef = useRef<HTMLDivElement | null>(null);
 
   const { perMonth, perCategoryPie, perCategoryTable, lastOrders, totals } =
     useDashboardData(userId);
-
   const { chartWidth, pieWidth } = useResponsiveCharts(
     chartContainerRef,
     pieContainerRef,
@@ -85,7 +82,10 @@ const Dashboard = () => {
               <TotalDiv key={index}>
                 <TotalTitle>{totalTitles[index]}</TotalTitle>
                 <TotalNumbers>
-                  <TotalValue>${element?.totValue}</TotalValue>
+                  <TotalValue>
+                    {index < 2 && '$'}
+                    {element?.totValue}
+                  </TotalValue>
                   <RelativeValue val={element?.relValue}>
                     {element?.relValue}%
                   </RelativeValue>

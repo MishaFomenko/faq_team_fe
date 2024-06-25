@@ -42,6 +42,8 @@ export type ResponseGetUser = {
   jeans_size?: string;
   shoes_size?: number;
   avgRate?: number;
+  stripe_id: string;
+  payment_method_id: string;
 };
 
 export type ResponseGetProduct = {

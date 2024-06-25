@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
+
 import { Theme } from 'styles/theme';
 
 export const MobTitle = styled.p<{ theme?: Theme }>`
@@ -20,6 +21,8 @@ export const Avatar = styled.img`
   border-radius: 50%;
   margin-bottom: 12px;
   margin: 0 auto;
+  width: 120px;
+  height: 120px;
 `;
 
 export const UserName = styled.p<{ theme?: Theme }>`

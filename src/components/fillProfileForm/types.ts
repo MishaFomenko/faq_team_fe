@@ -41,8 +41,8 @@ export interface UserData {
 }
 
 export interface TabProps {
-  setSelectedIndex: (index: number) => void;
-  index: number;
+  setSelectedIndex?: (index: number) => void;
+  index?: number;
   data: UserData;
 }
 

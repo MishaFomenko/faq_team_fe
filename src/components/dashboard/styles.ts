@@ -354,7 +354,7 @@ export const getChartParams = (
   tickLabelStyle: object,
 ) => {
   const chartParams = {
-    margin: { top: 10, bottom: 40, right: 30 },
+    margin: { left: 60, top: 10, bottom: 40, right: 30 },
     borderRadius: 5,
     height: 240,
     width: chartWidth,
@@ -370,7 +370,7 @@ export const getChartParams = (
       {
         tickInterval: 'auto' as const,
         valueFormatter: (value: number) => `$${value}`,
-        tickMaxStep: 10000,
+        tickMaxStep: 100000,
         tickMinStep: 1,
       },
     ],

@@ -22,7 +22,8 @@ export const useEditProfileSchema = () => {
         .string()
         .trim()
         .max(maxPhoneLength, t('validation.phone'))
-        .required(t(t('validation.credentials'))),
+        .required(t(t('validation.credentials')))
+        .transform(value => (value.startsWith('+') ? value.slice(1) : value)),
       clothes: yup.string().required(t('validation.required')),
       shoes: yup.number().required(t('validation.required')),
       jeans: yup.string().required(t('validation.required')),

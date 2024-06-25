@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Tab, TabList, TabPanel } from 'react-tabs';
 import { useGetMeQuery } from 'redux/userApiSlice.ts';
 import { v4 as uuidv4 } from 'uuid';
@@ -16,16 +17,20 @@ import {
   TabsHeader,
   TabsSection,
 } from 'components/fillProfileForm/styles';
+import { fillProfileMaxStep } from 'const/constants';
 
 const FillProfileForm = () => {
   const { t } = useTranslation();
   const { data, refetch } = useGetMeQuery();
+  const navigate = useNavigate();
 
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(0);
-
   useEffect(() => {
     setSelectedIndex(data?.filled_profile_step);
-  }, [data]);
+    data && data?.filled_profile_step === fillProfileMaxStep && navigate(-1);
+    console.log(data?.filled_profile_step);
+    console.log(fillProfileMaxStep);
+  }, [data, navigate]);
 
   useEffect(() => {
     refetch();

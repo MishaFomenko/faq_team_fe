@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+
 import { Theme } from 'styles/theme';
 
-export const StyledForm = styled.form<{ theme?: Theme }>`
+export const StyledForm = styled.div<{ theme?: Theme }>`
   width: 30vw;
   min-width: 200px;
   width: 100%;
@@ -25,4 +26,13 @@ export const StyledFormWrapper = styled.div<{ theme?: Theme }>`
   display: flex;
   justify-content: center;
   align-content: center;
+`;
+
+export const CardInfo = styled.div<{ theme?: Theme }>`
+  padding-bottom: 10px;
+  font-family: ${({ theme }) => theme.fontNames.playfairDisplay};
+
+  p {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+  }
 `;

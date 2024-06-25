@@ -6,7 +6,7 @@ import { ResponseGetUser } from './types';
 
 const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getMe: builder.query<ResponseGetUser, string | undefined>({
+    getMe: builder.query<ResponseGetUser, void>({
       query: () => ({
         url: `${paths.getUser}/user`,
       }),
@@ -37,6 +37,12 @@ const userApiSlice = apiSlice.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+    getCardInfo: builder.query({
+      query: () => ({
+        url: `${paths.getUser}/get-card-info`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -46,4 +52,5 @@ export const {
   useFollowUserMutation,
   useGetPublicInfoQuery,
   useDeleteMeMutation,
+  useGetCardInfoQuery,
 } = userApiSlice;

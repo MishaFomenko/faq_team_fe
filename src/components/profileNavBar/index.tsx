@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'js-cookie';
 
 import LogoutIcon from 'assets/icons/logoutIcon';
 import OrdersIcon from 'assets/icons/ordersIcon';
@@ -21,10 +22,17 @@ import {
 } from './styles';
 import { ProfileNavBarProps } from './types';
 
-const avatarSize: number = 120;
 const iconsSize: number = 32;
 
-export const ProfileNavBar = ({ toggleModal }: ProfileNavBarProps) => {
+export const ProfileNavBar = ({
+  toggleModal,
+  avatar,
+  name,
+}: {
+  toggleModal: ProfileNavBarProps;
+  avatar: string;
+  name: string;
+}) => {
   const { t } = useTranslation();
   const [isVendor, setIsVendor] = useState<boolean>(false);
 
@@ -32,16 +40,15 @@ export const ProfileNavBar = ({ toggleModal }: ProfileNavBarProps) => {
     setIsVendor(!isVendor);
   };
 
+  const handleLogOut = () => {
+    Cookies.remove('access_token');
+  };
+
   return (
     <>
       <MobTitle>{t('profileNav.mobTitle')}</MobTitle>
-      <Avatar
-        src={defaultAvatar}
-        alt="user-avatar"
-        width={avatarSize}
-        height={avatarSize}
-      />
-      <UserName>{t('profileNav.username')}</UserName>
+      <Avatar src={avatar || defaultAvatar} alt="user-avatar" />
+      <UserName>{name}</UserName>
       <ModeList>
         <li>
           <p>
@@ -88,7 +95,7 @@ export const ProfileNavBar = ({ toggleModal }: ProfileNavBarProps) => {
           </EvenNavLink>
         </li>
         <li>
-          <OddNavLink to={paths.logout}>
+          <OddNavLink to={paths.signIn} onClick={handleLogOut}>
             <LogoutIcon width={iconsSize} height={iconsSize} />
             <span>{t('profileNav.navLinks.logout')}</span>
           </OddNavLink>

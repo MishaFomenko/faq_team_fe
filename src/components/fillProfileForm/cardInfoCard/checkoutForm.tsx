@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   PaymentElement,
@@ -6,10 +6,11 @@ import {
   useStripe,
 } from '@stripe/react-stripe-js';
 import { useSaveCardInfoMutation } from 'redux/authApiSlice';
+import { useGetCardInfoQuery } from 'redux/userApiSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
-  StyledForm,
+  CardInfo,
   StyledFormWrapper,
 } from 'components/fillProfileForm/cardInfoCard/styles';
 import {
@@ -30,7 +31,15 @@ import { ButtonVariant, TabProps } from 'components/fillProfileForm/types';
 const CheckoutForm = ({ setSelectedIndex, index, data }: TabProps) => {
   const { t } = useTranslation();
 
+  const [changeCard, setChangeCard] = useState(true);
+
   const [registrationSaveCardInfo] = useSaveCardInfoMutation();
+  const { data: cardInfo, refetch } = useGetCardInfoQuery();
+
+  useEffect(() => {
+    refetch();
+    cardInfo?.lastFourDigits && setChangeCard(!cardInfo);
+  }, [data, refetch]);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -40,7 +49,8 @@ const CheckoutForm = ({ setSelectedIndex, index, data }: TabProps) => {
   ): Promise<void> => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
+    if (!stripe || !elements || !changeCard) {
+      setSelectedIndex(index + 1);
       return;
     }
 
@@ -53,8 +63,15 @@ const CheckoutForm = ({ setSelectedIndex, index, data }: TabProps) => {
       },
     });
 
-    await registrationSaveCardInfo({ paymentMethod, id: data.id });
-    setSelectedIndex(index + 1);
+    const result = await registrationSaveCardInfo({
+      paymentMethod,
+      id: data.id,
+    });
+    !result.error && setSelectedIndex(index + 1);
+  };
+
+  const handleChangeCard = () => {
+    setChangeCard(true);
   };
 
   return (
@@ -67,12 +84,26 @@ const CheckoutForm = ({ setSelectedIndex, index, data }: TabProps) => {
           </StyledSubtitle>
         </StyledFormContainer>
         <StyledFormWrapper>
-          <StyledForm id="payment-form">
+          {cardInfo?.lastFourDigits && (
+            <CardInfo>
+              <p>Your current payment method:</p>{' '}
+              <span>
+                {cardInfo.cardBrand}: **** **** **** {cardInfo.lastFourDigits}
+              </span>
+            </CardInfo>
+          )}
+          {changeCard && (
             <PaymentElement
               id="payment-element"
               options={paymentElementOptions}
             />
-          </StyledForm>
+          )}
+          <StyledButton
+            onClick={handleChangeCard}
+            variant={ButtonVariant.Black}
+          >
+            {!changeCard ? 'Change payment method' : 'Close'}
+          </StyledButton>
         </StyledFormWrapper>{' '}
       </StyledCard>
       <ButtonsContainer>

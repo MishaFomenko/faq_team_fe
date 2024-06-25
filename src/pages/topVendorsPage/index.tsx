@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useGetUsersQuery } from 'redux/superAdminApiSlice';
+import { useGetMeQuery } from 'redux/userApiSlice';
 
 import FiltersIcon from 'assets/icons/filtersIcon';
 import Filter from 'components/productsFilters';
@@ -18,6 +20,13 @@ import {
 
 const TopVendorsPage = () => {
   const { t } = useTranslation();
+
+  const { data: dataMe } = useGetMeQuery();
+  const navigate = useNavigate();
+  useEffect(() => {
+    dataMe && dataMe.user_role !== 'buyer' && navigate(-1);
+  }, [dataMe, navigate]);
+
   const { data } = useGetUsersQuery({
     page: 1,
     limit: 10,
@@ -49,35 +58,39 @@ const TopVendorsPage = () => {
 
   return (
     <>
-      <TopVendorsTitleSection>
-        <div className="mobile-wrap">
-          <p>{t('topVendors.title')}</p>
-          <button>
-            <FiltersIcon />
-          </button>
-        </div>
-      </TopVendorsTitleSection>
-      <TopVendorsWrapper>
-        <TopVendorsSectionWrap>
-          <FiltersWrap>
-            <Filter
-              priceRange={priceRange}
-              setPriceRange={setPriceRange}
-              selectedColor={selectedColor}
-              setSelectedColor={setSelectedColor}
-              selectedSize={selectedSize}
-              setSelectedSize={setSelectedSize}
-              selectedStyle={selectedStyle}
-              setSelectedStyle={setSelectedStyle}
-              // handleApply={handleApply}
-            />{' '}
-          </FiltersWrap>
-          <VendorsListtWrap>
-            <SearchInput placeholder={'search'} />
-            {data && <TopVendorsList data={data} />}
-          </VendorsListtWrap>
-        </TopVendorsSectionWrap>
-      </TopVendorsWrapper>
+      {dataMe && dataMe.user_role === 'buyer' && (
+        <>
+          <TopVendorsTitleSection>
+            <div className="mobile-wrap">
+              <p>{t('topVendors.title')}</p>
+              <button>
+                <FiltersIcon />
+              </button>
+            </div>
+          </TopVendorsTitleSection>
+          <TopVendorsWrapper>
+            <TopVendorsSectionWrap>
+              <FiltersWrap>
+                <Filter
+                  priceRange={priceRange}
+                  setPriceRange={setPriceRange}
+                  selectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
+                  selectedSize={selectedSize}
+                  setSelectedSize={setSelectedSize}
+                  selectedStyle={selectedStyle}
+                  setSelectedStyle={setSelectedStyle}
+                  // handleApply={handleApply}
+                />{' '}
+              </FiltersWrap>
+              <VendorsListtWrap>
+                <SearchInput placeholder={'search'} />
+                {data && <TopVendorsList data={data} />}
+              </VendorsListtWrap>
+            </TopVendorsSectionWrap>
+          </TopVendorsWrapper>
+        </>
+      )}
     </>
   );
 };

@@ -26,4 +26,14 @@ export const StyledFormWrapper = styled.div<{ theme?: Theme }>`
   display: flex;
   justify-content: center;
   align-content: center;
+  flex-direction: column;
+`;
+
+export const CardInfo = styled.div<{ theme?: Theme }>`
+  padding: 10px;
+  font-family: ${({ theme }) => theme.fontNames.playfairDisplay};
+
+  p {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+  }
 `;

@@ -127,11 +127,7 @@ const SizeForm = ({ setSelectedIndex, index, data }: TabProps) => {
         <StyledButton
           key={uuidv4()}
           variant={ButtonVariant.White}
-          onClick={() =>
-            !data.stripe_id
-              ? setSelectedIndex(index - 1)
-              : setSelectedIndex(index - 2)
-          }
+          onClick={() => setSelectedIndex(index - 1)}
         >
           {t('fillProfile.prevButton')}
         </StyledButton>

@@ -33,7 +33,7 @@ export const TopVendorsList = ({ data }) => {
                 <VendorName>{vendor.full_name}</VendorName>
               </ImgWrap>
               <BtnWrapper>
-                <FollowButton />
+                <FollowButton userId={vendor.id} />
               </BtnWrapper>
             </InfoWrapper>
             <ProductsList

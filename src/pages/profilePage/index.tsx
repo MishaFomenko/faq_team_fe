@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
+import { useGetMeQuery } from 'redux/userApiSlice';
 
 import { DeleteAccountModal } from 'components/deleteAccountModal';
 import { ProfileNavBar } from 'components/profileNavBar';
+import PersonalInfoPage from 'pages/personalInfoPage';
 
 import {
   OutletWrap,
@@ -20,7 +21,8 @@ const ProfilePage = () => {
   const toggleModal = () => {
     setIsModalOpen(prevIsModalOpen => !prevIsModalOpen);
   };
-
+  const { data, isLoading } = useGetMeQuery();
+  console.log(data);
   return (
     <>
       <TitleSection>
@@ -29,10 +31,16 @@ const ProfilePage = () => {
       <ProfileSection>
         <ProfileSectionWrap>
           <ProfileNavBarWrap>
-            <ProfileNavBar toggleModal={toggleModal} />
+            {data && (
+              <ProfileNavBar
+                toggleModal={toggleModal}
+                avatar={data.avatar}
+                name={data.full_name}
+              />
+            )}
           </ProfileNavBarWrap>
           <OutletWrap>
-            <Outlet />
+            {data && <PersonalInfoPage data={data} isLoading={isLoading} />}
           </OutletWrap>
         </ProfileSectionWrap>
       </ProfileSection>
