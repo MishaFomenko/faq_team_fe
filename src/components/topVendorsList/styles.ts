@@ -14,11 +14,6 @@ export const VendorsListItem = styled.li<{ theme?: Theme }>`
   }
 `;
 
-export const InfoWrapper = styled.div<{ theme?: Theme }>`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
 export const ImgWrap = styled.div<{ theme?: Theme }>`
   display: inline-flex;
   align-items: center;
@@ -52,6 +47,7 @@ export const VendorName = styled.p<{ theme?: Theme }>`
 export const ProductsList = styled.ul<{ theme?: Theme }>`
   width: 100%;
   margin-top: 20px;
+  padding: 0;
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-top: 36px;
   }
@@ -60,8 +56,8 @@ export const ProductsList = styled.ul<{ theme?: Theme }>`
     cursor: pointer;
     border: 1px solid ${({ theme }) => theme.colors.greyish_red};
     border-radius: 8px;
-    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    }
+    overflow: hidden;
+
     img {
       border-top-right-radius: 8px;
       border-top-left-radius: 8px;

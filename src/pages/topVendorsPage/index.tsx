@@ -12,9 +12,9 @@ import { maxRange, minRange } from 'const/constants.ts';
 
 import {
   FiltersWrap,
+  TopVendorsSection,
   TopVendorsSectionWrap,
   TopVendorsTitleSection,
-  TopVendorsWrapper,
   VendorsListtWrap,
 } from './styles';
 
@@ -35,11 +35,33 @@ const TopVendorsPage = () => {
     role: 'vendor',
   });
 
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   const [priceRange, setPriceRange] = useState([minRange, maxRange]);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   // const [showOnlyMySizes, setShowOnlyMySizes] = useState<boolean>(false);
   const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+
+  const handleSearchChange = e => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredData = data
+    ? {
+        ...data,
+        users: data.users
+          .map(vendor => ({
+            ...vendor,
+            products: vendor.products.filter(product =>
+              product.product_name
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()),
+            ),
+          }))
+          .filter(vendor => vendor.products.length > 0),
+      }
+    : null;
 
   // const handleApply = async () => {
   //   // TODO add logic to send request with filters
@@ -58,39 +80,39 @@ const TopVendorsPage = () => {
 
   return (
     <>
-      {dataMe && dataMe.user_role === 'buyer' && (
-        <>
-          <TopVendorsTitleSection>
-            <div className="mobile-wrap">
-              <p>{t('topVendors.title')}</p>
-              <button>
-                <FiltersIcon />
-              </button>
-            </div>
-          </TopVendorsTitleSection>
-          <TopVendorsWrapper>
-            <TopVendorsSectionWrap>
-              <FiltersWrap>
-                <Filter
-                  priceRange={priceRange}
-                  setPriceRange={setPriceRange}
-                  selectedColor={selectedColor}
-                  setSelectedColor={setSelectedColor}
-                  selectedSize={selectedSize}
-                  setSelectedSize={setSelectedSize}
-                  selectedStyle={selectedStyle}
-                  setSelectedStyle={setSelectedStyle}
-                  // handleApply={handleApply}
-                />{' '}
-              </FiltersWrap>
-              <VendorsListtWrap>
-                <SearchInput placeholder={'search'} />
-                {data && <TopVendorsList data={data} />}
-              </VendorsListtWrap>
-            </TopVendorsSectionWrap>
-          </TopVendorsWrapper>
-        </>
-      )}
+      <TopVendorsTitleSection>
+        <div className="mobile-wrap">
+          <p>{t('topVendors.title')}</p>
+          <button>
+            <FiltersIcon />
+          </button>
+        </div>
+      </TopVendorsTitleSection>
+      <TopVendorsSection>
+        <TopVendorsSectionWrap>
+          <FiltersWrap>
+            <Filter
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
+              selectedColor={selectedColor}
+              setSelectedColor={setSelectedColor}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+              selectedStyle={selectedStyle}
+              setSelectedStyle={setSelectedStyle}
+              // handleApply={handleApply}
+            />
+          </FiltersWrap>
+          <VendorsListtWrap>
+            <SearchInput
+              placeholder="Search"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            {filteredData && <TopVendorsList data={filteredData} />}
+          </VendorsListtWrap>
+        </TopVendorsSectionWrap>
+      </TopVendorsSection>
     </>
   );
 };
