@@ -17,23 +17,8 @@ const authSlice = createSlice({
     setEmail: (state, action: PayloadAction<string>) => {
       state.user.email = action.payload;
     },
-
-    setUserId: (state, action: PayloadAction<string>) => {
-      state.user.id = action.payload;
-      localStorage.setItem('userId', JSON.stringify(action.payload));
-    },
-
-    setToken: (state, action) => {
-      state.access_token = action.payload;
-      localStorage.setItem('token', JSON.stringify(action.payload));
-    },
-
-    clearToken: state => {
-      state.access_token = '';
-      localStorage.temoveItem('token');
-    },
   },
 });
 
-export const { setToken, clearToken, setEmail, setUserId } = authSlice.actions;
+export const { setEmail } = authSlice.actions;
 export const authReducer = authSlice.reducer;

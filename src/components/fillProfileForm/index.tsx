@@ -24,9 +24,9 @@ const FillProfileForm = () => {
   const { data, refetch } = useGetMeQuery();
   const navigate = useNavigate();
 
-  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(0);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
   useEffect(() => {
-    setSelectedIndex(data?.filled_profile_step);
+    setSelectedIndex(data?.filled_profile_step as number);
     data && data?.filled_profile_step === fillProfileMaxStep && navigate(-1);
     console.log(data?.filled_profile_step);
     console.log(fillProfileMaxStep);
@@ -43,7 +43,7 @@ const FillProfileForm = () => {
         {data && (
           <StyledTabs selectedIndex={selectedIndex} onSelect={() => {}}>
             <TabList>
-              {tabs.map((tab, index) => (
+              {tabs.map((_, index) => (
                 <Tab
                   key={uuidv4()}
                   className={

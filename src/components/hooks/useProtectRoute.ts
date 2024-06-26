@@ -15,9 +15,9 @@ const UseProtectRoute = () => {
 
   useEffect(() => {
     isLoggedIn();
-  }, []);
+  });
 
-  return isLoggedIn;
+  return { access_token, isLoggedIn };
 };
 
 export default UseProtectRoute;

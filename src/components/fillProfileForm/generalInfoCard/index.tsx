@@ -38,6 +38,11 @@ import { imageFormat, phoneLength } from 'const/constants';
 
 import 'react-international-phone/style.css';
 
+type YupSchema = {
+  image: FileList | undefined;
+  phone: string | undefined;
+};
+
 const GeneralInfoCard = ({ setSelectedIndex, index, data }: TabProps) => {
   const { t } = useTranslation();
 
@@ -61,7 +66,7 @@ const GeneralInfoCard = ({ setSelectedIndex, index, data }: TabProps) => {
     register,
     setValue,
   } = useForm<GeneralInfoSchema>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver<YupSchema>(schema),
   });
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

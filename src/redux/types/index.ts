@@ -1,3 +1,5 @@
+import { UserData } from 'components/fillProfileForm/types.ts';
+
 export type Response<T> = {
   data: T;
   message: string;
@@ -31,7 +33,7 @@ export type ResponseGetUser = {
   user_status: string;
   is_deleted_by_admin: boolean;
   user_role?: string;
-  avatar?: string;
+  avatar: string | null;
   phone?: string;
   address?: string;
   address_2?: string;
@@ -44,6 +46,10 @@ export type ResponseGetUser = {
   avgRate?: number;
   stripe_id: string;
   payment_method_id: string;
+  lastFourDigits?: number;
+  cardBrand?: string;
+  products: ResponseGetProduct[];
+  user_reviews: UserReview[];
 };
 
 export type ResponseGetProduct = {
@@ -55,6 +61,7 @@ export type ResponseGetProduct = {
   offer_type: string;
   price: number;
   is_active: boolean;
+  owner: UserData;
 };
 
 export type UserReview = {
@@ -114,7 +121,7 @@ export type RequestGetUsersWithFilters = {
   limit: number;
   order: 'ASC' | 'DESC';
   search?: string;
-  role: string | null;
+  role?: string | null;
 };
 
 export type RequestGetProductsWithFilters = {

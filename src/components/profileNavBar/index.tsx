@@ -20,7 +20,6 @@ import {
   OddNavLink,
   UserName,
 } from './styles';
-import { ProfileNavBarProps } from './types';
 
 const iconsSize: number = 32;
 
@@ -29,9 +28,9 @@ export const ProfileNavBar = ({
   avatar,
   name,
 }: {
-  toggleModal: ProfileNavBarProps;
+  toggleModal: () => void;
   avatar: string;
-  name: string;
+  name: string | number | readonly string[] | undefined;
 }) => {
   const { t } = useTranslation();
   const [isVendor, setIsVendor] = useState<boolean>(false);

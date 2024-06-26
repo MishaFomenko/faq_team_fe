@@ -11,13 +11,13 @@ import {
   useSaveGeneralInfoMutation,
   useUpdateUserMutation,
 } from 'redux/authApiSlice';
-import { ResponseGetUser } from 'redux/types';
 import { useGetCardInfoQuery } from 'redux/userApiSlice';
 
 import EditIcon from 'assets/icons/editIcon';
 import defaultAvatar from 'assets/images/default-avatar.png';
 import CheckoutForm from 'components/cardInfoCard/checkoutForm';
 import { billingDetails } from 'components/fillProfileForm/constants';
+import { UserData } from 'components/fillProfileForm/types.ts';
 import { ErrorMsg } from 'components/sharedUI/form/styles';
 
 import 'react-phone-number-input/style.css';
@@ -53,11 +53,11 @@ export const EditProfileForm = ({
   data,
   isLoading,
 }: {
-  data: ResponseGetUser;
+  data: UserData;
   isLoading: boolean;
 }) => {
-  const [avatar, setAvatar] = useState<string>('');
-  const [changeCard, setChangeCard] = useState(true);
+  const [avatar, setAvatar] = useState<string | null>('');
+  const [changeCard, setChangeCard] = useState<boolean>(true);
 
   const { t } = useTranslation();
 
@@ -101,7 +101,7 @@ export const EditProfileForm = ({
     if (data) {
       reset({
         avatar: data.avatar || null,
-        name: data.full_name || '',
+        name: `${data.full_name}`,
         email: data.email || '',
         phone: data.phone || '',
         clothes: data.cloth_size || clothesSizes[0],
@@ -132,16 +132,17 @@ export const EditProfileForm = ({
 
   const onSubmit: SubmitHandler<Inputs> = async formData => {
     const phoneImageForm = new FormData();
-    phoneImageForm.append('file', formData.avatar[0]);
+    phoneImageForm.append('file', formData.avatar && formData.avatar[0]);
     phoneImageForm.append('id', data.id);
-    console.log(phoneImageForm.get('file'));
+
     if (typeof formData.avatar !== 'string') {
       try {
         await registrationSaveGeneralInfo(phoneImageForm).unwrap();
       } catch (error) {
-        throw new Error(error);
+        throw new Error(error as string);
       }
     }
+
     await registrationUpdate({
       id: data.id,
       data: {

@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
-import { ButtonVariant, buttonProps } from './types';
+
 import { Theme } from 'styles/theme';
 
-export const StyledButton = styled.button<{ theme: Theme } & buttonProps>`
+import { buttonProps, ButtonVariant } from './types';
+
+export const StyledButton = styled.button<{ theme?: Theme } & buttonProps>`
   background-color: ${props =>
     props.variant === ButtonVariant.Black
       ? props.theme.colors.black

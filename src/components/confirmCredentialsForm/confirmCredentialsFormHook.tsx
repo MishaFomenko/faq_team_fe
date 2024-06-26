@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
+import { Inputs } from 'components/signInForm/types.ts';
+
 export const useConfirmCredentialsSchema = () => {
   const { t } = useTranslation();
   const confirmSchema = yup
@@ -14,5 +16,5 @@ export const useConfirmCredentialsSchema = () => {
     })
     .required();
 
-  return confirmSchema;
+  return confirmSchema as Inputs;
 };

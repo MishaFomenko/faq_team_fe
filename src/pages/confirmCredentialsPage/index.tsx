@@ -37,7 +37,7 @@ const ConfirmCredentialsPage = () => {
           />
         </FormContainer>
       )}
-      {error ? <ErrorMsg>{error}</ErrorMsg> : null}
+      {error && <ErrorMsg>{'message' in error ? error.message : ''}</ErrorMsg>}
     </FormSection>
   );
 };

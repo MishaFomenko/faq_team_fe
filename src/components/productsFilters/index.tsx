@@ -18,7 +18,7 @@ type FilterProps = {
   setSelectedSize: (size: string | null) => void;
   selectedStyle: string | null;
   setSelectedStyle: (style: string | null) => void;
-  handleApply: () => void;
+  handleApply?: () => void;
 };
 
 const Filter: React.FC<FilterProps> = ({

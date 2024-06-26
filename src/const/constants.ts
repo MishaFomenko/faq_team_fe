@@ -19,7 +19,7 @@ export const userRoles = {
 
 export const stripePaymentCurrency = 'usd';
 
-export const countriesOptions = ['Canada'] as const;
+export const countriesOptions = ['Canada'];
 export const statesOptions = {
   Canada: ['Ontario', 'Quebec', 'British Columbia'],
 } as const;

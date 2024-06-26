@@ -84,7 +84,7 @@ export const OtpForm = ({ step, email, action }: OptFormProps) => {
       }).unwrap();
 
       if (action === otpFormVersions.verifyEmail) {
-        if (step > fillProfileMaxStep) {
+        if (step && step > fillProfileMaxStep) {
           navigate(paths.root);
         } else {
           navigate(paths.fillProfile);
@@ -93,7 +93,7 @@ export const OtpForm = ({ step, email, action }: OptFormProps) => {
         navigate(paths.newPassword);
       }
     } catch (error) {
-      if (error instanceof Error && error.code === 401) {
+      if (error instanceof Error && 'code' in error ? error.code === 401 : '') {
         setError('root', {
           type: 'server',
           message: t('otpVerification.otpWrong'),

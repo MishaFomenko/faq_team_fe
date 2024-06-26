@@ -22,7 +22,6 @@ const NewPassPage = lazy(() => import('pages/newPassPage'));
 const VerifyOtpPAge = lazy(() => import('pages/verifyOtpPage'));
 const VerifyEmailPAge = lazy(() => import('pages/verifyEmailPage'));
 const ProfilePage = lazy(() => import('pages/profilePage'));
-const PersonalInfoPage = lazy(() => import('pages/personalInfoPage'));
 const FillProfilePage = lazy(() => import('pages/fillProfilePage'));
 const TopVendorsPage = lazy(() => import('pages/topVendorsPage'));
 const DashboardPage = lazy(() => import('pages/dashboardPage'));
@@ -46,9 +45,7 @@ function App() {
           <Route path={paths.fillProfile} element={<FillProfilePage />} />
           <Route path={paths.termsOfUse} element={<TermsOfUsePage />} />
           <Route path={paths.publicProfile} element={<PublicProfilePage />} />
-          <Route path={paths.profile} element={<ProfilePage />}>
-            <Route index element={<PersonalInfoPage />} />
-          </Route>
+          <Route path={paths.profile} element={<ProfilePage />} />
           <Route path={paths.productFeed} element={<ProductFeed />} />
           <Route
             path={paths.confirmCredentials}

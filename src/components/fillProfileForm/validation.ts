@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
 import { Country } from 'components/fillProfileForm/types';
-import { citiesOptions, statesOptions } from 'const/constants';
 
 const useFillProfileSchemas = () => {
   const { t } = useTranslation();
@@ -42,12 +41,8 @@ const useFillProfileSchemas = () => {
     country: yup
       .mixed<Country>()
       .required(t('fillProfile.addressCard.countryRequired')),
-    state: yup
-      .mixed<(typeof statesOptions)[Country][number]>()
-      .required(t('fillProfile.addressCard.stateRequired')),
-    city: yup
-      .mixed<(typeof citiesOptions)[Country][number]>()
-      .required(t('fillProfile.addressCard.cityRequired')),
+    state: yup.mixed().required(t('fillProfile.addressCard.stateRequired')),
+    city: yup.mixed().required(t('fillProfile.addressCard.cityRequired')),
   });
 
   return { addressSchema, roleSchema, sizeSchema };

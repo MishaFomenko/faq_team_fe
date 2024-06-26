@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useGetProductsQuery,
@@ -26,13 +26,14 @@ import {
 } from 'pages/productFeed/styles.ts';
 
 import { ESort } from '../../enums/sortEnum.ts';
+import { ResponseGetProduct } from '../../redux/types';
 
 const productsText = 'products';
 
 const ProductFeed = () => {
   const { t } = useTranslation();
   const [getProducts] = useLazyGetProductsQuery();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ResponseGetProduct[]>([]);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsloading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -74,7 +75,7 @@ const ProductFeed = () => {
     const loadProducts = () => {
       try {
         setIsloading(true);
-        setProducts([...products, ...data.products]);
+        setProducts([...products, ...data!.products]);
         setErrorMsg('');
         console.log(data);
       } catch (error) {
@@ -85,7 +86,7 @@ const ProductFeed = () => {
       }
     };
     loadProducts();
-  }, [data, isLoading]);
+  }, [data, isLoading, products, t]);
 
   useEffect(() => {
     (async function () {
@@ -102,8 +103,14 @@ const ProductFeed = () => {
       setProducts(res.products);
       setTotalProducts(res.totalCount);
     })();
-    console.log(order);
-  }, [order]);
+  }, [
+    order,
+    getProducts,
+    selectedColor,
+    selectedSize,
+    selectedStyle,
+    priceRange,
+  ]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);

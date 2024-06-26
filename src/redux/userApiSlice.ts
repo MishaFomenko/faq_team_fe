@@ -1,12 +1,13 @@
 import { apiSlice } from 'redux/apiSlice';
 
+import { UserData } from 'components/fillProfileForm/types.ts';
 import { paths } from 'const/paths';
 
 import { ResponseGetUser } from './types';
 
 const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getMe: builder.query<ResponseGetUser, void>({
+    getMe: builder.query<UserData, void>({
       query: () => ({
         url: `${paths.getUser}/user`,
       }),
@@ -31,7 +32,7 @@ const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-    deleteMe: builder.mutation<void, string>({
+    deleteMe: builder.mutation({
       query: () => ({
         url: `${paths.getUser}/user/delete`,
         method: 'DELETE',

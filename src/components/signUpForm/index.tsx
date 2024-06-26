@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { setEmail, setUserId } from 'redux/auth/authSlice';
+import { setEmail } from 'redux/auth/authSlice';
 import {
   useRegistrationMutation,
   useRestorePassMutation,
@@ -53,13 +53,12 @@ export const SignUpForm = () => {
   const onSubmit: SubmitHandler<Inputs> = async data => {
     try {
       const { name, email, password } = data;
-      const userId = await registration({
+      await registration({
         full_name: name,
         email,
         password,
       }).unwrap();
       dispatch(setEmail(email));
-      dispatch(setUserId(userId));
       reset();
       await sendOtp({ email: data.email });
       navigate(paths.verifyEmail);

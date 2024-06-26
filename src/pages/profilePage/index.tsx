@@ -22,7 +22,6 @@ const ProfilePage = () => {
     setIsModalOpen(prevIsModalOpen => !prevIsModalOpen);
   };
   const { data, isLoading } = useGetMeQuery();
-  console.log(data);
   return (
     <>
       <TitleSection>
@@ -34,7 +33,7 @@ const ProfilePage = () => {
             {data && (
               <ProfileNavBar
                 toggleModal={toggleModal}
-                avatar={data.avatar}
+                avatar={data.avatar!}
                 name={data.full_name}
               />
             )}

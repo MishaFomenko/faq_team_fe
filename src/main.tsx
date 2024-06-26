@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Global, ThemeProvider } from '@emotion/react';
 import {
   createTheme,
+  ThemeOptions,
   ThemeProvider as MuiThemeProvider,
 } from '@mui/material/styles';
 import App from 'App.tsx';
@@ -15,7 +16,7 @@ import 'translation/i18n.ts';
 import { globalStyles } from 'styles/globalStyles.ts';
 import { theme } from 'styles/theme.ts';
 
-const muiTheme = createTheme(theme);
+const muiTheme = createTheme(theme as ThemeOptions);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

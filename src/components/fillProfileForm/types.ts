@@ -1,8 +1,4 @@
-import {
-  citiesOptions,
-  countriesOptions,
-  statesOptions,
-} from 'const/constants';
+import { countriesOptions } from 'const/constants';
 
 export interface buttonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,11 +15,11 @@ export interface UserData {
   avatar: string | null;
   city: string | null;
   cloth_size: string | null;
-  country: string | null;
+  country: string;
   created_at: Date;
-  email: string | null;
+  email: string;
   filled_profile_step: number | null;
-  full_name: string | null;
+  full_name: string | number | readonly string[] | undefined;
   id: string;
   is_deleted_by_admin: boolean;
   is_verified: boolean;
@@ -41,8 +37,8 @@ export interface UserData {
 }
 
 export interface TabProps {
-  setSelectedIndex?: (index: number) => void;
-  index?: number;
+  setSelectedIndex: (index: number) => void;
+  index: number;
   data: UserData;
 }
 
@@ -72,6 +68,6 @@ export interface AddressSchema {
   address1: string;
   address2?: string;
   country: Country;
-  state: (typeof statesOptions)[Country][number];
-  city: (typeof citiesOptions)[Country][number];
+  state: unknown;
+  city: unknown;
 }
