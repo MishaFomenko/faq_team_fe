@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import Select from 'react-select';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUpdateUserMutation } from 'redux/authApiSlice';
 import { v4 as uuidv4 } from 'uuid';
@@ -140,7 +141,7 @@ const AddressForm = ({ setSelectedIndex, index, data }: TabProps) => {
               name="state"
               control={control}
               render={({ field }) => (
-                <select {...field}>
+                <Select {...field}>
                   <option disabled>
                     {t('fillProfile.addressCard.selectState')}
                   </option>
@@ -149,7 +150,7 @@ const AddressForm = ({ setSelectedIndex, index, data }: TabProps) => {
                       {state}
                     </option>
                   ))}
-                </select>
+                </Select>
               )}
             />
             <p>{errors.state && errors.state.message}</p>
@@ -160,7 +161,7 @@ const AddressForm = ({ setSelectedIndex, index, data }: TabProps) => {
               name="city"
               control={control}
               render={({ field }) => (
-                <select {...field}>
+                <Select {...field}>
                   <option disabled>
                     {t('fillProfile.addressCard.selectCity')}
                   </option>
@@ -169,7 +170,7 @@ const AddressForm = ({ setSelectedIndex, index, data }: TabProps) => {
                       {city}
                     </option>
                   ))}
-                </select>
+                </Select>
               )}
             />
             <p>{errors.city && errors.city.message}</p>

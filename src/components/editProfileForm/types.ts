@@ -16,4 +16,28 @@ export type Inputs = {
 export type ResponseCardInfo = {
   cardBrand: string;
   lastFourDigits: string;
+  address: string | null;
+  address_2: string | null;
+  avatar: string | null;
+  city: string | null;
+  cloth_size: string | null;
+  country: string;
+  created_at: Date;
+  email: string;
+  filled_profile_step: number | null;
+  full_name: string | number | readonly string[] | undefined;
+  id: string;
+  is_deleted_by_admin: boolean;
+  is_verified: boolean;
+  jeans_size: string | null;
+  otp_code: string | null;
+  payment_method_id: string | null;
+  phone: string | null;
+  shoes_size: number | null;
+  state: string | null;
+  stripe_id: string | null;
+  updated_at: Date;
+  user_reviews: string[] | null;
+  user_role: string | null;
+  user_status: string | null;
 };

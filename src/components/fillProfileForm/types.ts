@@ -1,3 +1,4 @@
+import { ResponseCardInfo } from 'components/editProfileForm/types.ts';
 import { countriesOptions } from 'const/constants';
 
 export interface buttonProps
@@ -34,12 +35,14 @@ export interface UserData {
   user_reviews: string[] | null;
   user_role: string | null;
   user_status: string | null;
+  cardBrand: string;
+  lastFourDigits: string;
 }
 
 export interface TabProps {
   setSelectedIndex: (index: number) => void;
   index: number;
-  data: UserData;
+  data: ResponseCardInfo;
 }
 
 export interface Sizes {

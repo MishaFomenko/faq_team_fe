@@ -63,7 +63,7 @@ export const tabs = [
 export const paymentElementOptions = {
   layout: 'tabs',
   fields: {
-    billingDetails: 'never',
+    billingDetails: 'never' as unknown,
   },
 };
 

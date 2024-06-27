@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
+import { BillingDetails } from '@stripe/stripe-js';
 import {
   useSaveCardInfoMutation,
   useSaveGeneralInfoMutation,
@@ -164,10 +165,12 @@ export const EditProfileForm = ({
 
     await elements.submit();
 
+    const details = billingDetails(data);
+
     const { paymentMethod } = await stripe.createPaymentMethod({
       elements,
       params: {
-        billing_details: billingDetails(data),
+        billing_details: details as BillingDetails,
       },
     });
 
@@ -411,7 +414,7 @@ export const EditProfileForm = ({
           <CardWrap>
             <CheckoutForm
               changeCard={changeCard}
-              setSelectedIndex={setChangeCard}
+              setSelectedIndex={() => setChangeCard}
               data={cardInfo}
             />
           </CardWrap>

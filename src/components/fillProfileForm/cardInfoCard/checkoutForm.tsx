@@ -5,6 +5,7 @@ import {
   useElements,
   useStripe,
 } from '@stripe/react-stripe-js';
+import { BillingDetails } from '@stripe/stripe-js';
 import { useSaveCardInfoMutation } from 'redux/authApiSlice';
 import { useGetCardInfoQuery } from 'redux/userApiSlice';
 import { v4 as uuidv4 } from 'uuid';
@@ -56,10 +57,12 @@ const CheckoutForm = ({ setSelectedIndex, index, data }: TabProps) => {
 
     await elements.submit();
 
+    const details = billingDetails(data);
+
     const { paymentMethod } = await stripe.createPaymentMethod({
       elements,
       params: {
-        billing_details: billingDetails(data),
+        billing_details: details as BillingDetails,
       },
     });
 
