@@ -1,3 +1,3 @@
 export type RestorePass = {
-  email: string;
+  email?: string;
 };

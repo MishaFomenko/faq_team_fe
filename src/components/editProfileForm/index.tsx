@@ -15,7 +15,7 @@ import { useGetCardInfoQuery } from 'redux/userApiSlice';
 
 import EditIcon from 'assets/icons/editIcon';
 import defaultAvatar from 'assets/images/default-avatar.png';
-import CheckoutForm from 'components/cardInfoCard/checkoutForm';
+import CheckoutForm from 'components/fillProfileForm/cardInfoCard/checkoutForm.tsx';
 import { billingDetails } from 'components/fillProfileForm/constants';
 import { UserData } from 'components/fillProfileForm/types.ts';
 import { ErrorMsg } from 'components/sharedUI/form/styles';
@@ -412,7 +412,7 @@ export const EditProfileForm = ({
           <CardWrap>
             <CheckoutForm
               changeCard={changeCard}
-              setChangeCard={setChangeCard}
+              setSelectedIndex={setChangeCard}
               data={cardInfo}
             />
           </CardWrap>

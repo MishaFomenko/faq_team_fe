@@ -43,9 +43,9 @@ export interface TabProps {
 }
 
 export interface Sizes {
-  clothSize: string;
-  shoeSize: number;
-  jeansSize: string;
+  clothSize?: string;
+  shoeSize?: number;
+  jeansSize?: string;
 }
 
 export const enum UserRoles {
@@ -54,7 +54,7 @@ export const enum UserRoles {
 }
 
 export interface RoleFormData {
-  role: string;
+  role?: string;
 }
 
 export interface GeneralInfoSchema {
@@ -65,9 +65,9 @@ export interface GeneralInfoSchema {
 export type Country = (typeof countriesOptions)[number];
 
 export interface AddressSchema {
-  address1: string;
+  address1?: string;
   address2?: string;
-  country: Country;
-  state: unknown;
-  city: unknown;
+  country?: Country;
+  state?: unknown;
+  city?: unknown;
 }

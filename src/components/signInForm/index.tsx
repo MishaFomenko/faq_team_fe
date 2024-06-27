@@ -22,6 +22,7 @@ import {
   isFetchBaseQueryError,
 } from 'helpers/errorHandler';
 
+import { RequestLogin } from '../../redux/types';
 import { useSignInSchema } from './signInFormHook';
 import { Inputs } from './types';
 
@@ -49,7 +50,7 @@ export const SignInForm = () => {
     resolver: yupResolver(singInSchema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async data => {
+  const onSubmit: SubmitHandler<RequestLogin> = async data => {
     try {
       const response = await login(data).unwrap();
       dispatch(setEmail(data.email));

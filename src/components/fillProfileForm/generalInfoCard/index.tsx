@@ -38,25 +38,18 @@ import { imageFormat, phoneLength } from 'const/constants';
 
 import 'react-international-phone/style.css';
 
-type YupSchema = {
-  image: FileList | undefined;
-  phone: string | undefined;
-};
-
 const GeneralInfoCard = ({ setSelectedIndex, index, data }: TabProps) => {
   const { t } = useTranslation();
 
   const schema = yup.object().shape({
     image: yup
       .mixed()
-      .test(
-        'fileType',
-        t('fillProfile.generalInfoCard.imageRequired'),
-        value => (!data.avatar ? isValidFileList(value as FileList) : true),
+      .test('fileType', 'fillProfile.generalInfoCard.imageRequired', value =>
+        !data.avatar ? isValidFileList(value as FileList) : true,
       ),
     phone: yup
       .string()
-      .min(phoneLength, t('fillProfile.generalInfoCard.phoneRequired')),
+      .min(phoneLength, 'fillProfile.generalInfoCard.phoneRequired'),
   });
 
   const {
@@ -66,7 +59,7 @@ const GeneralInfoCard = ({ setSelectedIndex, index, data }: TabProps) => {
     register,
     setValue,
   } = useForm<GeneralInfoSchema>({
-    resolver: yupResolver<YupSchema>(schema),
+    resolver: yupResolver(schema),
   });
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

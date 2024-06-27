@@ -1,18 +1,19 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { NewPass } from 'components/newPassForm/types';
-import {
-  StyledForm,
-  SubmitBtn,
-  ErrorMsg,
-} from 'components/sharedUI/form/styles';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useNewPassMutation } from 'redux/authApiSlice.ts';
+import * as yup from 'yup';
+
 import EyeIcon from 'assets/icons/iconEye';
 import EyeCloseIcon from 'assets/icons/iconEyeClose';
-import { useNewPassMutation } from 'redux/authApiSlice.ts';
-import { passLengthLim } from 'const/constants';
 import { useTogglePassVisibility } from 'components/newPassForm/newPassFormHooks';
+import { NewPass } from 'components/newPassForm/types';
+import {
+  ErrorMsg,
+  StyledForm,
+  SubmitBtn,
+} from 'components/sharedUI/form/styles';
+import { passLengthLim } from 'const/constants';
 
 export const NewPassForm = ({ email }: { email: string }) => {
   const { t } = useTranslation();
@@ -59,7 +60,7 @@ export const NewPassForm = ({ email }: { email: string }) => {
     } catch (error) {
       setError('root', {
         type: 'server',
-        message: t('restorePassword.server'),
+        message: `${t('restorePassword.server')}`,
       });
     }
   };

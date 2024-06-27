@@ -1,20 +1,14 @@
-import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
-import { Inputs } from 'components/signInForm/types.ts';
+export const confirmCredentialsForm = yup.object({
+  email: yup
+    .string()
+    .email('validation.email')
+    .required('validation.credentials'),
+  full_name: yup.string().required('validation.credentials').required(),
+});
 
-export const useConfirmCredentialsSchema = () => {
-  const { t } = useTranslation();
-  const confirmSchema = yup
-    .object()
-    .shape({
-      email: yup
-        .string()
-        .email(t('validation.email'))
-        .required(t('validation.credentials')),
-      full_name: yup.string().required(t('validation.credentials')),
-    })
-    .required();
-
-  return confirmSchema as Inputs;
+export type IConfirmCredentialsForm = {
+  email?: string | undefined;
+  full_name?: string | undefined;
 };

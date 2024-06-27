@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useUpdateUserMutation } from 'redux/authApiSlice';
 
 import { ButtonVariant } from 'components/button/types';
-import { Inputs, Props } from 'components/confirmCredentialsForm/types';
+import { Props } from 'components/confirmCredentialsForm/types';
 import {
   ErrorMsg,
   StyledForm,
@@ -19,7 +19,10 @@ import {
   isFetchBaseQueryError,
 } from 'helpers/errorHandler';
 
-import { useConfirmCredentialsSchema } from './confirmCredentialsFormHook';
+import {
+  confirmCredentialsForm,
+  IConfirmCredentialsForm,
+} from './confirmCredentialsFormHook';
 
 export const ConfirmCredentialsForm = ({
   email_value,
@@ -29,7 +32,6 @@ export const ConfirmCredentialsForm = ({
   const { t } = useTranslation();
   const [isSet, setIsSet] = useState(false);
   const [update, { isLoading }] = useUpdateUserMutation();
-  const confirmSchema = useConfirmCredentialsSchema();
   const navigate = useNavigate();
   const {
     register,
@@ -37,22 +39,22 @@ export const ConfirmCredentialsForm = ({
     setError,
     formState: { errors },
     reset,
-  } = useForm<Inputs>({
+  } = useForm<IConfirmCredentialsForm>({
+    resolver: yupResolver(confirmCredentialsForm),
     defaultValues: {
-      email: email_value,
-      full_name: full_name,
+      email: `${email_value}`,
+      full_name: `${full_name}`,
     },
-    resolver: yupResolver(confirmSchema),
   });
 
   useEffect(() => {
     reset({
-      email: email_value,
-      full_name: full_name,
+      email: `${email_value}`,
+      full_name: `${full_name}`,
     });
   }, [email_value, full_name, reset]);
 
-  const onSubmit: SubmitHandler<Inputs> = async data => {
+  const onSubmit: SubmitHandler<IConfirmCredentialsForm> = async data => {
     try {
       await update({ id, data }).unwrap();
       setIsSet(true);

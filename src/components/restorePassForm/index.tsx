@@ -1,17 +1,18 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { setEmail } from 'redux/auth/authSlice.ts';
+import { useRestorePassMutation } from 'redux/authApiSlice';
+import { useAppDispatch } from 'redux/hooks.ts';
+import * as yup from 'yup';
+
 import { RestorePass } from 'components/restorePassForm/types';
 import {
+  ErrorMsg,
   StyledForm,
   SubmitBtn,
-  ErrorMsg,
 } from 'components/sharedUI/form/styles';
-import { useRestorePassMutation } from 'redux/authApiSlice';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'redux/hooks.ts';
-import { setEmail } from 'redux/auth/authSlice.ts';
 import { paths } from 'const/paths';
 
 export const RestorePassForm = () => {
@@ -25,11 +26,11 @@ export const RestorePassForm = () => {
     .shape({
       email: yup
         .string()
-        .email(t('validation.email'))
-        .required(t('validation.creadentials')),
+        .email('validation.email')
+        .required('validation.credentials'),
     })
     .required();
-    
+
   const {
     register,
     handleSubmit,
