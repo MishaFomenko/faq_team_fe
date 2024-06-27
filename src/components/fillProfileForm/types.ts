@@ -41,7 +41,7 @@ export interface UserData {
 
 export interface TabProps {
   setSelectedIndex: (index: number) => void;
-  index: number;
+  index?: number;
   data: ResponseCardInfo;
 }
 
@@ -61,8 +61,8 @@ export interface RoleFormData {
 }
 
 export interface GeneralInfoSchema {
-  image: FileList;
-  phone: string;
+  image?: FileList;
+  phone?: string;
 }
 
 export type Country = (typeof countriesOptions)[number];

@@ -413,7 +413,6 @@ export const EditProfileForm = ({
           </LocationField>
           <CardWrap>
             <CheckoutForm
-              changeCard={changeCard}
               setSelectedIndex={() => setChangeCard}
               data={cardInfo}
             />

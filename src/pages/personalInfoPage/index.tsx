@@ -1,5 +1,5 @@
 import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js';
 
 import { EditProfileForm } from 'components/editProfileForm';
 import { elementsOptions } from 'components/fillProfileForm/constants';
@@ -16,7 +16,7 @@ const PersonalInfoPage = ({
   data: UserData;
   isLoading: boolean;
 }) => {
-  const options = elementsOptions;
+  const options = elementsOptions as StripeElementsOptions;
 
   return (
     <>

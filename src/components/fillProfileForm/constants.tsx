@@ -1,3 +1,5 @@
+import { StripePaymentElementOptions } from '@stripe/stripe-js';
+
 import FirstStepActive from 'assets/icons/steps/step1_active';
 import SecondStepActive from 'assets/icons/steps/step2_active';
 import SecondStepInactive from 'assets/icons/steps/step2_inactive';
@@ -65,7 +67,7 @@ export const paymentElementOptions = {
   fields: {
     billingDetails: 'never' as unknown,
   },
-};
+} as StripePaymentElementOptions;
 
 export const billingDetails = (data: UserData) => {
   const billing_details = {

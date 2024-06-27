@@ -58,7 +58,7 @@ const GeneralInfoCard = ({ setSelectedIndex, index, data }: TabProps) => {
     formState: { errors },
     register,
     setValue,
-  } = useForm<GeneralInfoSchema>({
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
