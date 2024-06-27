@@ -70,7 +70,6 @@ export const EditProfileForm = ({
   useEffect(() => {
     cardInfo?.lastFourDigits && setChangeCard(!cardInfo);
   }, [cardInfo]);
-  console.log(cardInfo);
 
   const editProfileSchema = useEditProfileSchema();
   const {

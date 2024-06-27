@@ -12,3 +12,8 @@ export type Inputs = {
   states?: string;
   cities?: string;
 };
+
+export type ResponseCardInfo = {
+  cardBrand: string;
+  lastFourDigits: string;
+};

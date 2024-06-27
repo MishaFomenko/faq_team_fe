@@ -1,5 +1,6 @@
 import { apiSlice } from 'redux/apiSlice';
 
+import { ResponseCardInfo } from 'components/editProfileForm/types.ts';
 import { UserData } from 'components/fillProfileForm/types.ts';
 import { paths } from 'const/paths';
 
@@ -32,13 +33,13 @@ const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-    deleteMe: builder.mutation({
+    deleteMe: builder.mutation<void, void>({
       query: () => ({
         url: `${paths.getUser}/user/delete`,
         method: 'DELETE',
       }),
     }),
-    getCardInfo: builder.query({
+    getCardInfo: builder.query<ResponseCardInfo, void>({
       query: () => ({
         url: `${paths.getUser}/get-card-info`,
         method: 'GET',
